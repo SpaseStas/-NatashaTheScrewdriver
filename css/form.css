@@ -1,0 +1,198 @@
+
+
+
+
+.popup_box{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  cursor: pointer;
+}
+
+.popup_main{
+  width:600px;
+  background-color:azure;
+  margin: auto;
+  cursor: default;
+}
+
+
+.modal_close{
+  background-color: transparent;
+  border:none;
+}
+
+
+.popup{
+  max-width: 440px;
+
+  border-radius: 6px;
+
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #fff;
+  font-size: 25px;
+}
+
+
+
+
+
+.pole{
+  margin-top: 3%;
+  text-align: left;
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+
+.pole input{
+  margin: 3% 0%;
+  color: #FFF;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+/*  border:*/
+  font-size:16px;
+/*  font-family: Tahoma;*/
+  border: none;
+  border-bottom: 3px solid #999;
+  background-color: #6b0b0c;
+  outline: none;
+}
+
+.pole input:focus{
+  border: none;
+  border-bottom: 3px solid black;
+}
+
+.social p {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.social ul{
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+
+
+
+.modal{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  display:none;
+  transition: opacity 400ms ease-in-out;
+  z-index: 1;
+}
+
+.modal_main{
+  position:relative;
+/*  max-width: 600px;*/
+  background-color:#6b0b0c;
+  margin: auto;
+  color: #fff;
+  border-radius: 16px;
+  padding: 30px;
+
+}
+
+.modal_btn{
+    padding: 10px 60px;
+    background: #6b0b0c;
+    border: 2px solid #fff;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 20px;
+    margin-top: 10%;
+    box-shadow: 0 5px 5px rgba(0 , 0, 0, 0.2);
+}
+
+.modal_btn:hover{
+    background: #fff;
+}
+
+.modal_close{
+  background-color:transparent;
+  border: none;
+  cursor:pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  outline: 1px solid transparent;
+  transition: outline-color .15s easy-in-out;
+  border-radius:3px;
+  padding:0;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+}
+
+.modal_close:focus-visible{
+  outline-color: green;
+}
+
+
+
+
+
+.popup_box{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  cursor: pointer;
+}
+
+.popup_main{
+  width:600px;
+  background-color:azure;
+  margin: auto;
+  cursor: default;
+}
+
+.btn {
+  display:flex;
+  padding: 10px 60px;
+  background: #fff;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 500;
+  border-radius: 20px;
+  margin-top: 10%;
+  box-shadow: 0 5px 5px rgba(0 , 0, 0, 0.2);
+  color:#000;
+}
+
+
+.btn:hover{
+  color: #fff;
+  background: #6b0b0c;
+}
+
+.modal_close{
+  background-color: transparent;
+  border:none;
+}
+
+

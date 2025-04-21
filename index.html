@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Language" content="ru">
+  <title>  Калькулятор</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<script defer src="js/form.js"></script>
+
+<body>
+  <header>
+    
+    <form action="" class="formCalc">
+
+      <div class="crosCurs">
+        <div class="crosCursEur">
+           <label for="crosCursEur">Крос из дол в евро</label>
+           <input type="numb" placeholder="например 1.1" id="crosCursEur">
+        </div>
+         <div class="crosCursDol">
+            <label for="crosCursDol">Крос из евро в дол</label>
+            <input type="numb" placeholder="например 1.12" id="crosCursDol">
+         </div>
+      </div>
+      <input class="InputText" type="text" placeholder="Год/Марка/Модель">
+      <input class="InputText" type="text" placeholder="Vin">
+      <label for="PriceLot">Сумма лота</label>
+      <input class="InputText" id="PriceLot" type="number" placeholder="Сумма лота">
+      <label for="engineСapacity"> Объем двигателя</label>
+      <input class="InputText" id="engineСapacity" type="number" placeholder="Объем Двигателя">
+
+      <label for="TypeTC">Тип ТС</label>
+        <select class="formCalc_select" name="TypeTC" id="TypeTC">
+            <option value="Auto" selected>Авто</option>
+            <option value="Motorbike">Мотоцикл</option>
+            <option value="QuadBike">Квадроцикл</option>
+        </select>
+
+
+      <label for="Age">Возраст</label>
+      <select class="formCalc_select" name="Age" id="Age">
+          <option value="up to 3" selected>до 3 лет</option>
+          <option value="from 3 to 5 years">от 3 до 5 лет</option>
+          <option value="over 5 years old">старше 5</option>
+      </select>
+
+
+
+        <label for="platform">Платфрма</label>
+        <select class="formCalc_select" name="platform" id="platform">
+           <option value="Copart" selected>Copart</option>
+           <option value="IAAI">IAAI</option>
+        </select>
+
+        <label for="deliveyGeo">Куда везём</label>
+        <select class="formCalc_select" name="deliveyGeo" id="DeliveyGeo">
+          <option value="noname" selected>Выберите</option>
+          <option value="Klaipeda">Клайпеда</option>
+          <option value="Georgia">Грузия</option>
+        </select>
+
+        
+
+        <label for="Location">Локация</label>
+        <select class="formCalc_select" name="Location" id="Location">
+            <option value="ABILENE - TX" selected>ABILENE - TX</option>
+            <option value="ADELANTO - CA">ADELANTO - CA</option>
+            <option value="ADP TOWING MAUI -HI">ADP TOWING MAUI -HI</option>
+            <option value="ALBANY - NY">ALBANY - NY</option>
+            <option value="ALBUQUERQUE - NM">ALBUQUERQUE - NM</option>
+            <option value="ALTOONA - PA">ALTOONA - PA</option>
+            <option value="AMARILLO - TX">AMARILLO - TX</option>
+            <option value="ANDREWS - TX">ANDREWS - TX</option>
+            <option value="ANTELOPE - CA">ANTELOPE - CA</option>
+            <option value="APPLETON - WI">APPLETON - WI</option>
+            <option value="ATLANTA EAST - GA">ATLANTA EAST - GA</option>
+            <option value="ATLANTA NORTH - GA">ATLANTA NORTH - GA</option>
+            <option value="ATLANTA SOUTH - GA">ATLANTA SOUTH - GA</option>
+            <option value="ATLANTA WEST - GA">ATLANTA WEST - GA</option>
+            <option value="Augusta - GA">Augusta - GA</option>
+            <option value="AUSTIN - TX">AUSTIN - TX</option>
+            <option value="BAKERSFIELD - CA">BAKERSFIELD - CA</option>
+            <option value="BALTIMORE - MD">BALTIMORE - MD</option>
+            <option value="BALTIMORE EAST - MD">BALTIMORE EAST - MD</option>
+            <option value="BATON ROUGE - LA">BATON ROUGE - LA</option>
+            <option value="BILLINGS - MT">BILLINGS - MT</option>
+            <option value="BIRMINGHAM - AL">BIRMINGHAM - AL</option>
+            <option value="BOISE - ID">BOISE - ID</option>
+            <option value="BUFFALO - NY">BUFFALO - NY</option>
+            <option value="CANDIA - NH">CANDIA - NH</option>
+            <option value="CARTERSVILLE - GA">CARTERSVILLE - GA</option>
+            <option value="CHAMBERSBURG - PA">CHAMBERSBURG - PA</option>
+            <option value="CHARLESTON - WV">CHARLESTON - WV</option>
+            <option value="CHICAGO NORTH - IL">CHICAGO NORTH - IL</option>
+            <option value="CHICAGO SOUTH - IL">CHICAGO SOUTH - IL</option>
+            <option value="CHICAGO SOUTH-Woodmar/Heights sublot - IL">CHICAGO SOUTH-Woodmar/Heights sublot - IL</option>
+            <option value="CHINA GROVE - NC">CHINA GROVE - NC</option>
+            <option value="CICERO - IN">CICERO - IN</option>
+            <option value="CLEVELAND EAST - OH">CLEVELAND EAST - OH</option>
+            <option value="CLEVELAND WEST - OH">CLEVELAND WEST - OH</option>
+            <option value="COLORADO SPRINGS - CO">COLORADO SPRINGS - CO</option>
+            <option value="COLUMBUS - OH">COLUMBUS - OH</option>
+            <option value="CONCORD - NC">CONCORD - NC</option>
+            <option value="CORPUS CHRISTI - TX">CORPUS CHRISTI - TX</option>
+            <option value="CRASHEDTOYS ATLANTA - GA">CRASHEDTOYS ATLANTA - GA</option>
+            <option value="CRASHEDTOYS DALLAS  - TX">CRASHEDTOYS DALLAS  - TX</option>
+            <option value="CRASHEDTOYS EAST BETHEL - MN">CRASHEDTOYS EAST BETHEL - MN</option>
+            <option value="CRASHEDTOYS ELDRIDGE - IA">CRASHEDTOYS ELDRIDGE - IA</option>
+            <option value="CRASHEDTOYS MINNEAPOLIS - MN">CRASHEDTOYS MINNEAPOLIS - MN</option>
+            <option value="CRASHEDTOYS SACRAMENTO - CA">CRASHEDTOYS SACRAMENTO - CA</option>
+            <option value="DALLAS - TX">DALLAS - TX</option>
+            <option value="DALLAS SOUTH - TX">DALLAS SOUTH - TX</option>
+            <option value="DANVILLE - VA">DANVILLE - VA</option>
+            <option value="DAVENPORT - 169 Davenport sublot - IA">DAVENPORT - 169 Davenport sublot - IA</option>
+            <option value="DAVENPORT - IA">DAVENPORT - IA</option>
+            <option value="DAYTON - OH">DAYTON - OH</option>
+            <option value="DENVER - CO">DENVER - CO</option>
+            <option value="DENVER CENTRAL - CO">DENVER CENTRAL - CO</option>
+            <option value="DENVER SOUTH - CO">DENVER SOUTH - CO</option>
+            <option value="DES MOINES - IA">DES MOINES - IA</option>
+            <option value="DETROIT - MI">DETROIT - MI</option>
+            <option value="DK TOWING KAUAI - HI">DK TOWING KAUAI - HI</option>
+            <option value="DOTHAN - AL">DOTHAN - AL</option>
+            <option value="DYER - IN">DYER - IN</option>
+            <option value="EARLINGTON - KY">EARLINGTON - KY</option>
+            <option value="EL PASO - TX">EL PASO - TX</option>
+            <option value="EUGENE - OR">EUGENE - OR</option>
+            <option value="EXETER  - RI">EXETER  - RI</option>
+            <option value="FAIRBURN  - GA">FAIRBURN  - GA</option>
+            <option value="FAYETTEVILLE - AR">FAYETTEVILLE - AR</option>
+            <option value="FLINT - MI">FLINT - MI</option>
+            <option value="FORT WAYNE - IN">FORT WAYNE - IN</option>
+            <option value="FREDERICKSBURG  - VA">FREDERICKSBURG  - VA</option>
+            <option value="FREETOWN - MA">FREETOWN - MA</option>
+            <option value="FRESNO - CA">FRESNO - CA</option>
+            <option value="FT. PIERCE - FL">FT. PIERCE - FL</option>
+            <option value="FT. WORTH - TX">FT. WORTH - TX</option>
+            <option value="GASTONIA - NC">GASTONIA - NC</option>
+            <option value="GLASSBORO EAST - NJ">GLASSBORO EAST - NJ</option>
+            <option value="GLASSBORO WEST - NJ">GLASSBORO WEST - NJ</option>
+            <option value="GRAHAM - WA">GRAHAM - WA</option>
+            <option value="GREER - SС">GREER - SС</option>
+            <option value="HAMMOND - IN">HAMMOND - IN</option>
+            <option value="HAMPTON - VA">HAMPTON - VA</option>
+            <option value="HARRISBURG - PA">HARRISBURG - PA</option>
+            <option value="HARTFORD - CT">HARTFORD - CT</option>
+            <option value="HARTFORD CITY - IN">HARTFORD CITY - IN</option>
+            <option value="HARTFORD SPRINGFIELD - CT">HARTFORD SPRINGFIELD - CT</option>
+            <option value="HAYWARD - CA">HAYWARD - CA</option>
+            <option value="HELENA - MT">HELENA - MT</option>
+            <option value="HONOLULU - HI">HONOLULU - HI</option>
+            <option value="HOUSTON - TX">HOUSTON - TX</option>
+            <option value="HOUSTON EAST - TX">HOUSTON EAST - TX</option>
+            <option value="INDIANAPOLIS - IN">INDIANAPOLIS - IN</option>
+            <option value="IONIA - MI">IONIA - MI</option>
+            <option value="JACKSON - MS">JACKSON - MS</option>
+            <option value="JACKSONVILLE EAST - FL">JACKSONVILLE EAST - FL</option>
+            <option value="JACKSONVILLE NORTH - FL">JACKSONVILLE NORTH - FL</option>
+            <option value="JACKSONVILLE WEST - FL">JACKSONVILLE WEST - FL</option>
+            <option value="KANSAS CITY - KS">KANSAS CITY - KS</option>
+            <option value="KINCHELOE - MI">KINCHELOE - MI</option>
+            <option value="KENS TOWING HILO - HI">KENS TOWING HILO - HI</option>
+            <option value="KNOXVILLE - TN">KNOXVILLE - TN</option>
+            <option value="LANSING - MI">LANSING - MI</option>
+            <option value="LAS VEGAS - NV">LAS VEGAS - NV</option>
+            <option value="LAS VEGAS WEST - NV">LAS VEGAS WEST - NV</option>
+            <option value="LEXINGTON WEST - KY">LEXINGTON WEST - KY</option>
+            <option value="LEXINGTON EAST - KY">LEXINGTON EAST - KY</option>
+            <option value="LINCOLN - NE">LINCOLN - NE</option>
+            <option value="LITTLE ROCK - AR">LITTLE ROCK - AR</option>
+            <option value="LONG BEACH - CA">LONG BEACH - CA</option>
+            <option value="LONG ISLAND - NY">LONG ISLAND - NY</option>
+            <option value="LONGVIEW - TX">LONGVIEW - TX</option>
+            <option value="LOS ANGELES - CA">LOS ANGELES - CA</option>
+            <option value="LOUISVILLE - KY">LOUISVILLE - KY</option>
+            <option value="LUFKIN - TX">LUFKIN - TX</option>
+            <option value="LUMBERTON - NC">LUMBERTON - NC</option>
+            <option value="LYMAN - ME">LYMAN - ME</option>
+            <option value="MACON - GA">MACON - GA</option>
+            <option value="MADISON - WI">MADISON - WI</option>
+            <option value="MADISON SOUTH - WI">MADISON SOUTH - WI</option>
+            <option value="MARTINEZ - CA">MARTINEZ - CA</option>
+            <option value="MCALLEN - TX">MCALLEN - TX</option>
+            <option value="MEBANE - NC">MEBANE - NC</option>
+            <option value="MEMPHIS - TN">MEMPHIS - TN</option>
+            <option value="MENTONE - CA">MENTONE - CA</option>
+            <option value="MIAMI CENTRAL - FL">MIAMI CENTRAL - FL</option>
+            <option value="MIAMI NORTH - FL">MIAMI NORTH - FL</option>
+            <option value="MIAMI SOUTH - FL">MIAMI SOUTH - FL</option>
+            <option value="MILWAUKEE - Stutervant sublot - WI">MILWAUKEE - Stutervant sublot - WI</option>
+            <option value="MILWAUKEE - Waukesha sublot - WI">MILWAUKEE - Waukesha sublot - WI</option>
+            <option value="MILWAUKEE - WI">MILWAUKEE - WI</option>
+            <option value="MILWAUKEE SOUTH - WI">MILWAUKEE SOUTH - WI</option>
+            <option value="MILWAUKEE NORTH - WI">MILWAUKEE NORTH - WI</option>
+            <option value="MILWAUKEE- Yard 339 Milwaukee sublot - WI">MILWAUKEE- Yard 339 Milwaukee sublot - WI</option>
+            <option value="MINNEAPOLIS - MN">MINNEAPOLIS - MN</option>
+            <option value="MINNEAPOLIS NORTH - MN">MINNEAPOLIS NORTH - MN</option>
+            <option value="MO - COLUMBIA - MO">MO - COLUMBIA - MO</option>
+            <option value="MOBILE - AL">MOBILE - AL</option>
+            <option value="MOBILE SOUTH - AL">MOBILE SOUTH - AL</option>
+            <option value="MOCKSVILLE  - NC">MOCKSVILLE  - NC</option>
+            <option value="MONTGOMERY - AL">MONTGOMERY - AL</option>
+            <option value="N.Boston-ROWLEY Sublot - MA">N.Boston-ROWLEY Sublot - MA</option>
+            <option value="NASHVILLE - TN">NASHVILLE - TN</option>
+            <option value="NEW ORLEANS - LA">NEW ORLEANS - LA</option>
+            <option value="NEWBURGH - NY">NEWBURGH - NY</option>
+            <option value="NORTH BOSTON - MA">NORTH BOSTON - MA</option>
+            <option value="NORTH CHARLESTON - SC">NORTH CHARLESTON - SC</option>
+            <option value="NORTH SEATTLE - WA">NORTH SEATTLE - WA</option>
+            <option value="OCALA - FL">OCALA - FL</option>
+            <option value="OGDEN - UT">OGDEN - UT</option>
+            <option value="OKLAHOMA CITY - OK">OKLAHOMA CITY - OK</option>
+            <option value="ORLANDO - FL">ORLANDO - FL</option>
+            <option value="ORLANDO NORTH - FL">ORLANDO NORTH - FL</option>
+            <option value="ORLANDO SOUTH - FL">ORLANDO SOUTH - FL</option>
+            <option value="PASCO - WA">PASCO - WA</option>
+            <option value="PEORIA - IL">PEORIA - IL</option>
+            <option value="PHILADELPHIA - PA">PHILADELPHIA - PA</option>
+            <option value="PHILADELPHIA EAST - PA">PHILADELPHIA EAST - PA</option>
+            <option value="PHOENIX - AR">PHOENIX - AR</option>
+            <option value="PITTSBURGH EAST - PA">PITTSBURGH EAST - PA</option>
+            <option value="PITTSBURGH NORTH - PA">PITTSBURGH NORTH - PA</option>
+            <option value="PITTSBURGH SOUTH - PA">PITTSBURGH SOUTH - PA</option>
+            <option value="PITTSBURGH WEST - PA">PITTSBURGH WEST - PA</option>
+            <option value="PORTLAND NORTH - OR">PORTLAND NORTH - OR</option>
+            <option value="PORTLAND SOUTH - OR">PORTLAND SOUTH - OR</option>
+            <option value="PUNTA GORDA - FL">PUNTA GORDA - FL</option>
+            <option value="PUNTA GORDA SOUTH - FL">PUNTA GORDA SOUTH - FL</option>
+            <option value="RALEIGH - NC">RALEIGH - NC</option>
+            <option value="RANCHO CUCAMONGA - CA">RANCHO CUCAMONGA - CA</option>
+            <option value="REDDING - CA">REDDING - CA</option>
+            <option value="RENO - NV">RENO - NV</option>
+            <option value="RICHMOND - VA">RICHMOND - VA</option>
+            <option value="RICHMOND EAST - VA">RICHMOND EAST - VA</option>
+            <option value="ROCHESTER - NY">ROCHESTER - NY</option>
+            <option value="SACRAMENTO - CA">SACRAMENTO - CA</option>
+            <option value="SALT LAKE CITY - UT">SALT LAKE CITY - UT</option>
+            <option value="SALT LAKE CITY NORTH - UT">SALT LAKE CITY NORTH - UT</option>
+            <option value="SAN ANTONIO - TX">SAN ANTONIO - TX</option>
+            <option value="SAN BERNARDINO - CA">SAN BERNARDINO - CA</option>
+            <option value="SAN DIEGO - CA">SAN DIEGO - CA</option>
+            <option value="SAN JOSE - CA">SAN JOSE - CA</option>
+            <option value="SAVANNAH - GA">SAVANNAH - GA</option>
+            <option value="SAVANNAH / VERTIA SUBLOT-Georgia Copart - GA">SAVANNAH / VERTIA SUBLOT-Georgia Copart - GA</option>
+            <option value="SC - COLUMBIA - SC">SC - COLUMBIA - SC</option>
+            <option value="SCRANTON - PA">SCRANTON - PA</option>
+            <option value="SEAFORD - DE">SEAFORD - DE</option>
+            <option value="SHREVEPORT - LA">SHREVEPORT - LA</option>
+            <option value="SIKESTON - MO">SIKESTON - MO</option>
+            <option value="SO SACRAMENTO - CA">SO SACRAMENTO - CA</option>
+            <option value="SOMERVILLE - NJ">SOMERVILLE - NJ</option>
+            <option value="SOUTH BOSTON - MA">SOUTH BOSTON - MA</option>
+            <option value="Southern Illinois - IL">Southern Illinois - IL</option>
+            <option value="SPARTANBURG - SC">SPARTANBURG - SC</option>
+            <option value="SPOKANE - WA">SPOKANE - WA</option>
+            <option value="SPRINGFIELD - MO">SPRINGFIELD - MO</option>
+            <option value="ST. CLOUD - MN">ST. CLOUD - MN</option>
+            <option value="ST. LOUIS - MO">ST. LOUIS - MO</option>
+            <option value="SUN VALLEY - CA">SUN VALLEY - CA</option>
+            <option value="SYRACUSE - NY">SYRACUSE - NY</option>
+            <option value="TALLAHASSEE - FL">TALLAHASSEE - FL</option>
+            <option value="TAMPA SOUTH - FL">TAMPA SOUTH - FL</option>
+            <option value="TAMPA SOUTH - Mulberry Sublot - FL">TAMPA SOUTH - Mulberry Sublot - FL</option>
+            <option value="TANNER - AL">TANNER - AL</option>
+            <option value="TIFTON - GA">TIFTON - GA</option>
+            <option value="TOW GUYS KAMUELA - HI">TOW GUYS KAMUELA - HI</option>
+            <option value="TRENTON - NJ">TRENTON - NJ</option>
+            <option value="TUCSON - AZ">TUCSON - AZ</option>
+            <option value="TULSA - OK">TULSA - OK</option>
+            <option value="VALLEJO - CA">VALLEJO - CA</option>
+            <option value="VAN NUYS - CA">VAN NUYS - CA</option>
+            <option value="WACO - TX">WACO - TX</option>
+            <option value="WALTON - KY">WALTON - KY</option>
+            <option value="WASHINGTON DC - MD">WASHINGTON DC - MD</option>
+            <option value="WEBSTER - NH">WEBSTER - NH</option>
+            <option value="WEST PALM BEACH - FL">WEST PALM BEACH - FL</option>
+            <option value="WEST WARREN - MA">WEST WARREN - MA</option>
+            <option value="WHEELING - IL">WHEELING - IL</option>
+            <option value="Windham - NY">Windham - NY</option>
+            <option value="WICHITA - KS">WICHITA - KS</option>
+            <option value="YORK HAVEN - PA">YORK HAVEN - PA</option>
+            <option value="WAYLAND - MI">WAYLAND - MI</option>
+        </select>
+
+        <label for="Dacument">Документ</label>
+        <select class="formCalc_select" name="Document" id="Dacument">
+            <option value="XX1">XX - Salvage Title / Certif / of distrctn</option>
+            <option value="NY2">NY - MV-907A без залога</option>
+            <option value="XX3">XX - MV-50 (NY)</option>
+            <option value="WA4">WA - Bill of Sale</option>
+            <option value="NY5">NY - MV-907A залоговый (DMV)</option>
+            <option value="XX6">XX - Scrap / Junk Title / Certificate</option>
+            <option value="NY7">NY - MV-907A + OPEN LIEN (UNSATISFIED LIEN)</option>
+            <option value="NY8">NY - MV-37; MV-51(B); TR-52</option>
+            <option value="CA9">CA, OR, XX - Lien / ACQ / DPLCT</option>
+            <option value="XX10">XX - BOS / Parts only / No title</option>
+        </select>
+        <span class="OtherItem">
+          <p>EV/Hybrid</p>
+          <input type="checkbox" id="OtherEV">
+        </span>        
+        <span class="OtherItem">
+          <p>Закрытый штат</p>
+          <input type="checkbox" id="OtherCL">
+        </span>        
+        <span class="OtherItem">
+          <p>Oversize car</p>
+          <input type="checkbox" id="OtherOV">
+        </span>
+    </form>
+
+    <div class="result">
+      <p>Результат</p>
+      <span class="result_deliveryItem">
+        <p>Аукционные / дилерские сборы:</p>
+        <p id="AuctionDealerFees">0</p>
+      </span>
+      <span class="result_deliveryItem">
+        <p id="DeliverytoPortLocation">Доставка до </p>
+        <p id="DeliverytoPort">0</p>
+      </span>
+      <span class="result_deliveryItem">
+        <p>Доставка до Минска</p>
+        <p id="DeliveryMinsk">0</p>
+      </span>
+      <span class="result_deliveryItem">
+        <p>Итого:</p>
+        <p id="resultTotal">0</p>
+      </span>
+      <span class="result_deliveryItem">
+        <p>Оформление экспортных документов (*по прибытию в порт в BYN):</p>
+        <p id="resultUSA">0</p>
+      </span>      
+      <span class="result_deliveryItem">
+        <p>Перерегистрация техпаспорта для экспорта (*при необходимости):</p>
+        <p id="Re-RegistrationDocuments">0</p>
+      </span>
+      <p>Таможенное оформление *по факту прибытия на таможню по курсу НБ</p>
+      <span class="result_deliveryItem">
+        <p>Таможенная пошлина:</p>
+        <p id="CustomsDutyEngine">0</p>
+      </span>
+      <span class="result_deliveryItem">
+        <p>Утилизационный сбор:</p>
+        <p id="RecyclingFee">0</p>
+      </span>
+      <span class="result_deliveryItem">
+        <p>Таможенные сборы и оформление:</p>
+        <p id="CustomsDuties">0</p>  
+      </span>
+      <span class="result_deliveryItem">
+        <p>Итого:</p>
+        <p id="resulTotal"></p>
+      </span>
+    </div>
+
+
+
+
+
+
+
+  </header>
+
+  
+
+</body>
+</html>
+
+
