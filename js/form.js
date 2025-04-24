@@ -7,6 +7,7 @@ let priceMinsk = 0;
 let buyerFee = 0;
 let priceCea = 0;
 let CustomPriceEngine = 0;
+let sum = 0;
 let PreparationExportdocuments$ = 132; //Оформление экспортных документов
 
 let outHtml = document.getElementById("resulTotal");
@@ -39,8 +40,9 @@ let AuctionDealerFees = document.getElementById("AuctionDealerFees"); //Аукц
 let CustomsDuties = document.getElementById("CustomsDuties"); //Тамаженный сборы и оформление
 let RecyclingFee = document.getElementById("RecyclingFee"); //Утиль сбор
 let PreparationExportdocuments = document.getElementById("resultUSA"); //Оформление экспортных документов
+let DeliverytoPort = document.getElementById("DeliverytoPort");
 
-DeliverytoPort
+
 
   let crosEur;
   let crosDol;
@@ -83,14 +85,16 @@ function dataTypeTC(){
 
 function dataPlatform(){
  platform = document.getElementById("platform").selectedIndex;
+ if (platform != 0) {RESETFUNCTION();};
  if (platform === 1) {
   StateLocation.style.display = "block";
-  document.getElementById("Location1").style.display = "none";
+  StateLocation1.style.display = "none";
  } else if(platform === 2){
   StateLocation.style.display = "none";
-  document.getElementById("Location1").style.display = "block";
+  StateLocation1.style.display = "block";
  }
  calculationFees();
+ calculationDeliverySea();
 };
 
 function dataLocation(){
@@ -107,9 +111,9 @@ function dataLocation1(){
 function dataDeliverytoPort(){
   deliverytoPort = document.getElementById("DeliveyGeo").selectedIndex;
   if (deliverytoPort === 1) {
-    document.getElementById("DeliverytoPortLocation").textContent = "Доствка до Клайпеды";
+    document.getElementById("DeliverytoPortLocation").textContent = "Доствка из США до Клайпеды";
   }else if(deliverytoPort === 2){
-    document.getElementById("DeliverytoPortLocation").textContent = "Доставка до Грузии";
+    document.getElementById("DeliverytoPortLocation").textContent = "Доставка из США до Грузии";
   }
 PreparationExportdocuments.textContent = "400 руб"
 deliveryToMinsk();
@@ -251,8 +255,19 @@ function calculationFees(){
     let ServiceFee = 95;
     let TitleHandingFee = 20;   
     let environmentalFee = 15;
-    let titlePickupFee = 20; // 20$ везде;
-    if (priceLot > 0 && priceLot <= 49.99) {buyerFee=1};
+    let InternetBidFee = 0; // 20$ везде;
+
+    if (priceLot > 0 && priceLot <= 99.99) {InternetBidFee = 0}
+      else if(priceLot > 99.99 && priceLot <= 499.99) {InternetBidFee = 50.00}
+      else if(priceLot > 499.99 && priceLot <= 999.99) {InternetBidFee = 55.00}
+      else if(priceLot > 999.99 && priceLot <= 1499.99) {InternetBidFee = 75.00}
+      else if(priceLot > 1499.99 && priceLot <= 1999.99) {InternetBidFee = 85.00}
+      else if(priceLot > 1999.99 && priceLot <= 3999.99) {InternetBidFee = 100.00}
+      else if(priceLot > 3999.99 && priceLot <= 5999.99) {InternetBidFee = 110.00}
+      else if(priceLot > 5999.99 && priceLot <= 7999.99) {InternetBidFee = 125.00}
+        else{InternetBidFee = 140};
+
+    if (priceLot > 0 && priceLot <= 99.99) {buyerFee=1};
     if (priceLot >= 50.00 && priceLot <= 99.99) {buyerFee=1};
     if (priceLot >= 100.00  && priceLot <= 199.99) {buyerFee=25.00};
     if (priceLot >= 200.00  && priceLot <= 299.99) {buyerFee=60.00};
@@ -293,7 +308,7 @@ function calculationFees(){
     if (priceLot >= 12000.00 && priceLot <= 12499.99) {buyerFee=875.00};
     if (priceLot >= 12500.00 && priceLot <= 14999.99) {buyerFee=890.00};
     if (priceLot >= 15000) {buyerFee = priceLot * 0.06};
-    buyerFee +=  ServiceFee + TitleHandingFee + environmentalFee ;
+    buyerFee +=  ServiceFee + TitleHandingFee + environmentalFee + InternetBidFee ;
     AuctionDealerFees.textContent = buyerFee + "$";
   };
   deliveryAmount();
@@ -302,7 +317,7 @@ function calculationFees(){
 //Доства из текущих локация Америки В клйпед/Грузия
 function calculationDeliverySea() {
   priceCea = 0;
-  if (platform === 1) {
+  if (platform === 1 && deliverytoPort === 1) {
     if (statelocation === 0) {priceCea = 0}
     if (statelocation === 1) {priceCea = 1225}   
     if (statelocation === 2) {priceCea = 1800} //ADELANTO - CA
@@ -520,9 +535,9 @@ function calculationDeliverySea() {
     if (statelocation === 214) {priceCea = 1425} //WICHITA - KS
     if (statelocation === 215) {priceCea = 1075} //YORK HAVEN - PA
     if (statelocation === 216) {priceCea = 1425} //WAYLAND - MI
-  }
+  };
 
-  if (platform === 2) {
+  if (platform === 2 && deliverytoPort === 1) {
     if (statelocation1 === 0) {priceCea = 0} 
     if (statelocation1 === 1) {priceCea = 1225} //ABILENE - TX 
     if (statelocation1 === 2) {priceCea = 1660} //ACE - Carson - CA
@@ -712,9 +727,11 @@ function calculationDeliverySea() {
     if (statelocation1 === 186) {priceCea = 1175} //WILMINGTON - NC
     if (statelocation1 === 187) {priceCea = 1225} //YORK HAVEN - PA
     if (statelocation1 === 188) {priceCea = 1075} //YORK SPRINGS - PA
-
-  }
-     document.getElementById("DeliverytoPort").textContent = priceCea +" $";
+  };
+    if (platform === 1 && deliverytoPort === 2){priceCea = 0};
+    if (platform === 2 && deliverytoPort === 2){priceCea = 0};
+    
+     DeliverytoPort.textContent = priceCea +" $";
     deliveryAmount();
 };
  
@@ -744,19 +761,30 @@ function deliveryToMinsk(){
     priceMinsk = 3000;
     document.getElementById("DeliveryMinsk").textContent = priceMinsk +" $";
   };
-  deliveryAmount();  
+  deliveryAmount();
+  calculationDeliverySea();  
 };
 
 
 // сумма первых 3-х
 function deliveryAmount(){ //Сумма  Аукционные,доставка,доставка
-  let sum = 0;
   sum = buyerFee + priceCea + priceMinsk;
-  document.getElementById("resultTotal").textContent = sum + " $";
+  outHtml.textContent = sum + " $";
 };
 
 
- 
+ function RESETFUNCTION() {
+  DeliverytoPort.textContent = 0;
+  sum = 0;
+  priceCea = 0;
+  DeliverytoPort.textContent = 0;
+  AuctionDealerFees.textContent = 0;
+  outHtml.textContent = 0;
+  StateLocation.value = "xui";
+  StateLocation1.value = "xui";
+  statelocation = 0;
+  statelocation1 = 0;
+ }
 
 
 
