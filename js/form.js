@@ -68,6 +68,7 @@ function dataPrice(){
   priceLot = +document.getElementById("PriceLot").value;
   
   CalculationOfCustomsDuty();
+  calculationFees();
 }
 
 function dataengineСapacity(){
@@ -951,7 +952,7 @@ function calculationDeliverySea() {
       priceCea = 0
     };
     if (platform === 2 && deliverytoPort === 2){priceCea = 0};
-    
+    // priceCea+=1000;
      DeliverytoPort.textContent = priceCea +" $";
     deliveryAmount();
     ResultTotal();
@@ -993,6 +994,7 @@ function deliveryToMinsk(){
 function deliveryAmount(){ //Сумма  Аукционные,доставка,доставка
   sum = buyerFee + priceCea + priceMinsk;
   outHtml.textContent = sum + " $";
+  ResultTotal();
 };
 
 
