@@ -10,6 +10,7 @@ let CustomPriceEngine = 0;
 let CustomPrice = 0;
 let CustomEngine = 0;
 let sum = 0;
+let flag = false;
 let PreparationExportdocuments$ = 400; //Оформление экспортных документов
 
 let outHtml = document.getElementById("resulTotal");
@@ -44,7 +45,7 @@ let PreparationExportdocuments = document.getElementById("resultUSA"); //Офо�
 let DeliverytoPort = document.getElementById("DeliverytoPort");
 let RegistrationDocuments = document.getElementById("Re-RegistrationDocuments"); //Перерегистрация техпаспорта
 let resultTotal = document.getElementById("resulTotal1");
-
+let OtherEV = document.getElementById("OtherEV"); //льготная таможня
 
   let crosEur;
   let crosDol;
@@ -130,6 +131,13 @@ function dataDacument(){
 };
 
 
+//
+function PreferentialCustoms(){
+  if (flag === false) { flag = true}
+    else if(flag === true) {flag = false};
+  CalculationOfCustomsDuty();
+}
+
 
 
 
@@ -172,31 +180,34 @@ CustomsDuties.textContent =" 120 руб";
       } else{
           CustomPrice = 0;
       }
-     CustomsDutyEngine.textContent = CustomEngine + " Eu " + Math.round(CustomEngine*crosDol)+"$" ;
+    
     };
 
   if (ageAuto === 1 && engineСapacity != " ") {  // от 3 до 5 лет
     RecyclingFee.textContent = "1089 руб";
-      CustomsDutyPrice.textContent = "0";
-      if (engineСapacity <= 1000) {CustomEngine = (eur = Math.round(engineСapacity * 1.5)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomEngine = (eur = Math.round(engineСapacity * 1.7)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 1500 && engineСapacity <= 1800) {CustomEngine = (eur = Math.round(engineСapacity * 2.5)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 1800 && engineСapacity <= 2300) {CustomEngine = (eur = Math.round(engineСapacity * 2.7)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 2300 && engineСapacity <= 3000) {CustomEngine = (eur = Math.round(engineСapacity * 3)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 3000) {CustomEngine = (eur = Math.round(engineСapacity * 3.6)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      CustomsDutyEngine.textContent = CustomEngine;
+      // CustomsDutyPrice.textContent = "0";
+      if (engineСapacity <= 1000) {CustomEngine = engineСapacity * 1.5};
+      if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomEngine = engineСapacity * 1.7};
+      if (engineСapacity > 1500 && engineСapacity <= 1800) {CustomEngine = engineСapacity * 2.5};
+      if (engineСapacity > 1800 && engineСapacity <= 2300) {CustomEngine = engineСapacity * 2.7};
+      if (engineСapacity > 2300 && engineСapacity <= 3000) {CustomEngine = engineСapacity * 3};
+      if (engineСapacity > 3000) {CustomEngine = engineСapacity * 3.6};
+
   };
   if (ageAuto === 2 && engineСapacity != " ") { //старже 5 лет
     RecyclingFee.textContent = "1089 руб";
-      CustomsDutyPrice.textContent = "0";
-      if (engineСapacity <= 1000) {CustomsDutyEngine.textContent = (eur = Math.round(engineСapacity * 3)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomsDutyEngine.textContent = (eur = Math.round(engineСapacity * 3.2)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 1500 && engineСapacity <= 1800) {CustomsDutyEngine.textContent = (eur = Math.round(engineСapacity * 3.5)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 1800 && engineСapacity <= 2300) {CustomsDutyEngine.textContent = (eur = Math.round(engineСapacity * 4.8)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 2300 && engineСapacity <= 3000) {CustomsDutyEngine.textContent = (eur = Math.round(engineСapacity * 5)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
-      if (engineСapacity > 3000) {CustomsDutyEngine.textContent = (eur = Math.round(engineСapacity * 5.7)) + "eu" +" " + Math.round(eur*crosDol) +"$"};
+      // CustomsDutyPrice.textContent = "0";
+      if (engineСapacity <= 1000) {CustomEngine = engineСapacity * 3};
+      if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomEngine = engineСapacity * 3.2};
+      if (engineСapacity > 1500 && engineСapacity <= 1800) {CustomEngine = engineСapacity * 3.5};
+      if (engineСapacity > 1800 && engineСapacity <= 2300) {CustomEngine = engineСapacity * 4.8};
+      if (engineСapacity > 2300 && engineСapacity <= 3000) {CustomEngine = engineСapacity * 5};
+      if (engineСapacity > 3000) {CustomEngine = engineСapacity * 5.7};
   };
+    if (flag === true) {CustomEngine = CustomEngine/2};
+   CustomsDutyEngine.textContent = CustomEngine + " Eu " + Math.round(CustomEngine*crosDol)+"$" ;
   };
+  ResultTotal();
 };
 
 //Аукционные / дилерские сборы:
@@ -1037,6 +1048,8 @@ StateLocation1.addEventListener("change",dataLocation1);
 DeliveyGeo.addEventListener("change",dataDeliverytoPort);
 
 Dacument.addEventListener("change",dataDacument);
+
+OtherEV.addEventListener("change",PreferentialCustoms);
 
 
 
