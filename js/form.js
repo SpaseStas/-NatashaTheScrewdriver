@@ -18,6 +18,7 @@ let result = 0; //вывовд в html итоговых значений
 // let engineСapacityValue = 0; //объем двигателя для кода
 let PriceLot = document.getElementById("PriceLot"); //мониторинг суммы лота
 let priceLot = document.getElementById("PriceLot").value;//сумма лота
+let OutPriceLot = document.getElementById("OutPriceLot");//Вывод суммы лота
 let EngineСapacity = document.getElementById("engineСapacity"); //Мониторинг объём движка
 let engineСapacity = document.getElementById("engineСapacity").value; //объём движка
 let AgeAuto = document.getElementById("Age"); //Мониторинг возраста автомобиля
@@ -67,7 +68,7 @@ function dataCursDol(){
 
 function dataPrice(){
   priceLot = +document.getElementById("PriceLot").value;
-  
+  OutPriceLot.textContent = priceLot + " $";
   CalculationOfCustomsDuty();
   calculationFees();
 }
@@ -128,6 +129,7 @@ deliveryToMinsk();
 function dataDacument(){
   salvageDocument = document.getElementById("Dacument").selectedIndex;
   calculationDocuments();
+  ResultTotal();
 };
 
 
@@ -973,7 +975,7 @@ function calculationDeliverySea() {
 //Документы на перегистрацию, цена
 function calculationDocuments() {
   let salvageDocumentPrice = 0;
-  if (platform === 1) {
+
       if (salvageDocument != 0) {
         salvageDocumentPrice =350;
         RegistrationDocuments.textContent = salvageDocumentPrice +" $";
@@ -981,7 +983,6 @@ function calculationDocuments() {
         salvageDocumentPrice = 0;
         RegistrationDocuments.textContent = salvageDocumentPrice +" $";
       }
-  }
   return salvageDocumentPrice;
 }
 
@@ -1003,8 +1004,9 @@ function deliveryToMinsk(){
 
 // сумма первых 3-х
 function deliveryAmount(){ //Сумма  Аукционные,доставка,доставка
-  sum = buyerFee + priceCea + priceMinsk;
-  outHtml.textContent = sum + " $";
+  if (priceLot === null || priceLot === undefined || priceLot ===" ") {priceLot = 0}
+  sum = buyerFee + priceCea + priceMinsk + priceLot;
+  // outHtml.textContent = sum + " $";
   ResultTotal();
 };
 
@@ -1015,7 +1017,7 @@ function deliveryAmount(){ //Сумма  Аукционные,доставка,�
   priceCea = 0;
   DeliverytoPort.textContent = 0;
   AuctionDealerFees.textContent = 0;
-  outHtml.textContent = 0;
+  // outHtml.textContent = 0;
   StateLocation.value = "xui";
   StateLocation1.value = "xui";
   statelocation = 0;
