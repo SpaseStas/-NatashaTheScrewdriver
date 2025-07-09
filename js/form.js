@@ -551,6 +551,7 @@ function calculationDeliverySea() {
     if (statelocation === 214) {priceCea = 1425} //WICHITA - KS
     if (statelocation === 215) {priceCea = 1075} //YORK HAVEN - PA
     if (statelocation === 216) {priceCea = 1425} //WAYLAND - MI
+      priceCea+=1000;
   };
 
   if (platform === 2 && deliverytoPort === 1) {
@@ -743,6 +744,7 @@ function calculationDeliverySea() {
     if (statelocation1 === 186) {priceCea = 1175} //WILMINGTON - NC
     if (statelocation1 === 187) {priceCea = 1225} //YORK HAVEN - PA
     if (statelocation1 === 188) {priceCea = 1075} //YORK SPRINGS - PA
+    priceCea+=1000;
   };
     if (platform === 1 && deliverytoPort === 2){
     if (statelocation === 0) {priceCea = 0}
