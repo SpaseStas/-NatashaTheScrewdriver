@@ -1,6 +1,46 @@
 // window.addEventListener("load", function() {});
 
 
+ZaprosBEL_USD();
+ZaprosUSD_EUR();
+  let BEL_USD;
+  let USD_EUR;
+
+// $.get('https://openexchangerates.org/api/latest.json', {app_id: 'a2ddba5de8b442a69dadbc419f229585'}, function(data) {
+//     console.log(data);
+// });
+
+async function ZaprosUSD_EUR(){
+let response = await fetch('https://openexchangerates.org/api/latest.json?app_id=a2ddba5de8b442a69dadbc419f229585');
+
+if (response.ok) { // если HTTP-статус в диапазоне 200-299
+  // получаем тело ответа (см. про этот метод ниже)
+  let json = await response.json();
+
+  USD_EUR = json.rates.EUR;
+} else {
+   alert("Ошибка HTTP: " + response.status);
+}
+};
+
+
+async function ZaprosBEL_USD(){
+let response = await fetch('https://api.nbrb.by/exrates/rates/431');
+
+if (response.ok) { // если HTTP-статус в диапазоне 200-299
+  // получаем тело ответа (см. про этот метод ниже)
+  let json = await response.json();
+  let kurs = json.Cur_OfficialRate;
+  BEL_USD = kurs;
+  console.log(json.Cur_OfficialRate);
+} else {
+  alert("Ошибка HTTP: " + response.status);
+}
+};
+
+
+
+
 let crosCursEur = document.getElementById("crosCursEur");
 let crosCursDol = document.getElementById("crosCursDol");
 let priceMinsk = 0;
@@ -11,7 +51,7 @@ let CustomPrice = 0;
 let CustomEngine = 0;
 let sum = 0;
 let flag = false;
-let PreparationExportdocuments$ = 400; //Оформление экспортных документов
+let PreparationExportdocuments$ = 0; //Оформление экспортных документов
 
 let outHtml = document.getElementById("resulTotal");
 let result = 0; //вывовд в html итоговых значений
@@ -43,10 +83,21 @@ let AuctionDealerFees = document.getElementById("AuctionDealerFees"); //Аукц
 let CustomsDuties = document.getElementById("CustomsDuties"); //Тамаженный сборы и оформление
 let RecyclingFee = document.getElementById("RecyclingFee"); //Утиль сбор
 let PreparationExportdocuments = document.getElementById("resultUSA"); //Оформление экспортных документов
+let PreparationExportdocumentsCheck = document.getElementById("PreparationExportdocumentsCheck"); //Оформление экспортных документов чекбокс
 let DeliverytoPort = document.getElementById("DeliverytoPort");
 let RegistrationDocuments = document.getElementById("Re-RegistrationDocuments"); //Перерегистрация техпаспорта
 let resultTotal = document.getElementById("resulTotal1");
 let OtherEV = document.getElementById("OtherEV"); //льготная таможня
+
+
+
+
+
+
+// ZaprosUSD_EUR();
+// ZaprosBEL_USD();
+
+
 
   let crosEur;
   let crosDol;
@@ -121,7 +172,7 @@ function dataDeliverytoPort(){
   }else if(deliverytoPort === 2){
     document.getElementById("DeliverytoPortLocation").textContent = "Доставка из США до Грузии";
   }
-PreparationExportdocuments.textContent = "400 руб"
+
 deliveryToMinsk();
 };
 
@@ -133,11 +184,24 @@ function dataDacument(){
 };
 
 
-//
+// льготная таможня да/нет
 function PreferentialCustoms(){
   if (flag === false) { flag = true}
     else if(flag === true) {flag = false};
   CalculationOfCustomsDuty();
+}
+
+// оформление экспортных документов да/нет
+function CheckDockument(){
+  if (PreparationExportdocumentsCheck.checked === true) {
+    PreparationExportdocuments$ = 400;
+  }
+  else {
+    PreparationExportdocuments$ = 0;
+  };
+  PreparationExportdocuments.textContent = PreparationExportdocuments$ + " руб"
+        sumRub_Dol();
+        ResultTotal();
 }
 
 
@@ -273,17 +337,17 @@ function calculationFees(){
     let ServiceFee = 95;
     let TitleHandingFee = 20;   
     let environmentalFee = 15;
-    let InternetBidFee = 0; // 20$ везде;
+    let InternetBidFee = 0; 
 
     if (priceLot > 0 && priceLot <= 99.99) {InternetBidFee = 0}
-      else if(priceLot > 99.99 && priceLot <= 499.99) {InternetBidFee = 50.00}
-      else if(priceLot > 499.99 && priceLot <= 999.99) {InternetBidFee = 55.00}
-      else if(priceLot > 999.99 && priceLot <= 1499.99) {InternetBidFee = 75.00}
-      else if(priceLot > 1499.99 && priceLot <= 1999.99) {InternetBidFee = 85.00}
-      else if(priceLot > 1999.99 && priceLot <= 3999.99) {InternetBidFee = 100.00}
-      else if(priceLot > 3999.99 && priceLot <= 5999.99) {InternetBidFee = 110.00}
-      else if(priceLot > 5999.99 && priceLot <= 7999.99) {InternetBidFee = 125.00}
-        else{InternetBidFee = 140};
+      else if(priceLot > 99.99 && priceLot <= 499.99) {InternetBidFee = 49.00}
+      else if(priceLot > 499.99 && priceLot <= 999.99) {InternetBidFee = 59.00}
+      else if(priceLot > 999.99 && priceLot <= 1499.99) {InternetBidFee = 79.00}
+      else if(priceLot > 1499.99 && priceLot <= 1999.99) {InternetBidFee = 89.00}
+      else if(priceLot > 1999.99 && priceLot <= 3999.99) {InternetBidFee = 99.00}
+      else if(priceLot > 3999.99 && priceLot <= 5999.99) {InternetBidFee = 109.00}
+      else if(priceLot > 5999.99 && priceLot <= 7999.99) {InternetBidFee = 139.00}
+        else{InternetBidFee = 149};
 
     if (priceLot > 0 && priceLot <= 99.99) {buyerFee=25.00};
     if (priceLot >= 50.00 && priceLot <= 99.99) {buyerFee=45.00};
@@ -985,6 +1049,7 @@ function calculationDocuments() {
         salvageDocumentPrice = 0;
         RegistrationDocuments.textContent = salvageDocumentPrice +" $";
       }
+
   return salvageDocumentPrice;
 }
 
@@ -1002,6 +1067,17 @@ function deliveryToMinsk(){
   calculationDeliverySea();
 
 };
+
+
+
+// подсчёт всех рублей и первод в доллары
+
+function sumRub_Dol(){
+
+  let sum = PreparationExportdocuments$ + 545 + 120 + 400;  // экспортные доки, утиль, таможенные сборы, свх
+  return sum / BEL_USD.toFixed(2);
+    
+}
 
 
 // сумма первых 3-х
@@ -1027,7 +1103,7 @@ function deliveryAmount(){ //Сумма  Аукционные,доставка,�
  };
 
 function ResultTotal() {
-  resultTotal.textContent = sum + calculationDocuments() + Math.round(CustomEngine*crosDol) +" $";
+  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol()) + Math.round(CustomEngine*crosDol) +" $";
 }
 
 
@@ -1055,5 +1131,7 @@ Dacument.addEventListener("change",dataDacument);
 
 OtherEV.addEventListener("change",PreferentialCustoms);
 
+PreparationExportdocumentsCheck.addEventListener("change",CheckDockument);
 
+console.log(BEL_USD);
 
