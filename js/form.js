@@ -48,9 +48,10 @@ let response = await fetch('https://developerhub.alfabank.by:8273/partner/1.0.0/
 if (response.ok) { // если HTTP-статус в диапазоне 200-299
   // получаем тело ответа (см. про этот метод ниже)
   let json = await response.json();
-  console.log(json.rates[2]);
+  console.log(json.rates);
     USD_EUR = json.rates[2].buyRate;
     EUR_USD = json.rates[2].sellRate;
+    BEL_USD = json.rates[5].buyRate;
     console.log(USD_EUR);
     console.log(EUR_USD);
 } else {
