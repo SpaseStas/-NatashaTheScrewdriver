@@ -1,27 +1,30 @@
 // window.addEventListener("load", function() {});
 
 
-ZaprosBEL_USD();
-ZaprosUSD_EUR();
+
+// ZaprosUSD_EUR();
   let BEL_USD;
   let USD_EUR;
+  let EUR_USD;
+ZaprosBEL_USD();
+Zaprosalfa();
 
 // $.get('https://openexchangerates.org/api/latest.json', {app_id: 'a2ddba5de8b442a69dadbc419f229585'}, function(data) {
 //     console.log(data);
 // });
 
-async function ZaprosUSD_EUR(){
-let response = await fetch('https://openexchangerates.org/api/latest.json?app_id=a2ddba5de8b442a69dadbc419f229585');
+// async function ZaprosUSD_EUR(){
+// let response = await fetch('https://openexchangerates.org/api/latest.json?app_id=a2ddba5de8b442a69dadbc419f229585');
 
-if (response.ok) { // если HTTP-статус в диапазоне 200-299
-  // получаем тело ответа (см. про этот метод ниже)
-  let json = await response.json();
+// if (response.ok) { // если HTTP-статус в диапазоне 200-299
+//   // получаем тело ответа (см. про этот метод ниже)
+//   let json = await response.json();
 
-  USD_EUR = json.rates.EUR;
-} else {
-   alert("Ошибка HTTP: " + response.status);
-}
-};
+//   USD_EUR = json.rates.EUR;
+// } else {
+//    alert("Ошибка HTTP: " + response.status);
+// }
+// };
 
 
 async function ZaprosBEL_USD(){
@@ -32,7 +35,24 @@ if (response.ok) { // если HTTP-статус в диапазоне 200-299
   let json = await response.json();
   let kurs = json.Cur_OfficialRate;
   BEL_USD = kurs;
-  console.log(json.Cur_OfficialRate);
+  // console.log(json.Cur_OfficialRate);
+} else {
+  alert("Ошибка HTTP: " + response.status);
+}
+};
+
+
+async function Zaprosalfa(){
+let response = await fetch('https://developerhub.alfabank.by:8273/partner/1.0.0/public/rates');
+
+if (response.ok) { // если HTTP-статус в диапазоне 200-299
+  // получаем тело ответа (см. про этот метод ниже)
+  let json = await response.json();
+  console.log(json.rates[2]);
+    USD_EUR = json.rates[2].buyRate;
+    EUR_USD = json.rates[2].sellRate;
+    console.log(USD_EUR);
+    console.log(EUR_USD);
 } else {
   alert("Ошибка HTTP: " + response.status);
 }
@@ -99,22 +119,22 @@ let OtherEV = document.getElementById("OtherEV"); //льготная тамож�
 
 
 
-  let crosEur;
-  let crosDol;
+  let crosEur = EUR_USD;
+  let crosDol = USD_EUR;
 StateLocation.style.display ="none";
 StateLocation1.style.display ="none";
 
 // крос курс из $ in eu
-function dataCursEur(){
-  crosEur = document.getElementById("crosCursEur").value;
-  crosEur = crosEur.replace(/,/g, '.');
-}
+// function dataCursEur(){
+//   crosEur = document.getElementById("crosCursEur").value;
+//   crosEur = crosEur.replace(/,/g, '.');
+// }
 
-// крос курс из eu in $
-function dataCursDol(){
-  crosDol = document.getElementById("crosCursEur").value;
-  crosDol = crosDol.replace(/,/g, '.');
-}
+// // крос курс из eu in $
+// function dataCursDol(){
+//   crosDol = document.getElementById("crosCursEur").value;
+//   crosDol = crosDol.replace(/,/g, '.');
+// }
 
 
 function dataPrice(){
@@ -215,7 +235,7 @@ CustomsDuties.textContent =" 120 руб";
   if (typeTC === 0) {   //Если втомобиль
   if (ageAuto === 0 && priceLot != " ") {  // до 3 лет
     RecyclingFee.textContent = "544,50 руб";
-     let euro = priceLot * crosEur;  //перевод из $ в евро
+     let euro = priceLot * EUR_USD;  //перевод из $ в евро
      if (euro <= 8500) {
       CustomPrice = Math.round(euro * 0.54); 
       CustomEngine = (engineСapacity * 2.5);
@@ -271,7 +291,7 @@ CustomsDuties.textContent =" 120 руб";
       if (engineСapacity > 3000) {CustomEngine = engineСapacity * 5.7};
   };
     if (flag === true) {CustomEngine = CustomEngine/2};
-   CustomsDutyEngine.textContent = CustomEngine + " Eu " + Math.round(CustomEngine*crosDol)+"$" ;
+   CustomsDutyEngine.textContent = CustomEngine + " Eu " + Math.round(CustomEngine*USD_EUR)+"$" ;
   };
   ResultTotal();
 };
@@ -1103,13 +1123,13 @@ function deliveryAmount(){ //Сумма  Аукционные,доставка,�
  };
 
 function ResultTotal() {
-  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol()) + Math.round(CustomEngine*crosDol) +" $";
+  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol()) + Math.round(CustomEngine*EUR_USD) +" $";
 }
 
 
 
-crosCursEur.addEventListener("input",dataCursEur);
-crosCursDol.addEventListener("input",dataCursDol);
+// crosCursEur.addEventListener("input",dataCursEur);
+// crosCursDol.addEventListener("input",dataCursDol);
 
 
 PriceLot.addEventListener("input",dataPrice);
@@ -1133,5 +1153,5 @@ OtherEV.addEventListener("change",PreferentialCustoms);
 
 PreparationExportdocumentsCheck.addEventListener("change",CheckDockument);
 
-console.log(BEL_USD);
+
 
