@@ -38,7 +38,7 @@ header{
   justify-content: space-between;
 }
 
-#OtherOV,#OtherCL,#OtherEV{
+.OtherItem input{
   width:20px;
 }
 
