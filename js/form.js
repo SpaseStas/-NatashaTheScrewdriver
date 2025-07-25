@@ -73,6 +73,7 @@ let CustomEngine = 0;
 let sum = 0;
 let flag = false;
 let PreparationExportdocuments$ = 0; //Оформление экспортных документов
+let slider_USD = 0;
 
 let outHtml = document.getElementById("resulTotal");
 let result = 0; //вывовд в html итоговых значений
@@ -1124,7 +1125,7 @@ function deliveryAmount(){ //Сумма  Аукционные,доставка,�
  };
 
 function ResultTotal() {
-  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol()) + Math.round(CustomEngine*EUR_USD) +" $";
+  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol()) + slider_USD + Math.round(CustomEngine*EUR_USD) +" $";
 }
 
 
@@ -1156,3 +1157,14 @@ PreparationExportdocumentsCheck.addEventListener("change",CheckDockument);
 
 
 
+let slider = document.getElementById("myRange");
+let output = document.getElementById("demo");
+
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  slider_USD = +this.value;
+  ResultTotal();
+
+}
