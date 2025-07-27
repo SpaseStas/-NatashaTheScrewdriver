@@ -410,7 +410,7 @@ function calculationFees(){
     if (priceLot >= 12000.00 && priceLot <= 12499.99) {buyerFee=900.00};
     if (priceLot >= 12500.00 && priceLot <= 14999.99) {buyerFee=900.00};
     if (priceLot >= 15000) {buyerFee = priceLot * 0.075};
-    buyerFee +=  ServiceFee + TitleHandingFee + environmentalFee + InternetBidFee ;
+    buyerFee +=  ServiceFee + TitleHandingFee + environmentalFee + InternetBidFee +100 ; //за плату тачки + 100
     AuctionDealerFees.textContent = buyerFee + "$";
   };
   deliveryAmount();
