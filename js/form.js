@@ -1110,6 +1110,17 @@ function deliveryAmount(){ //Сумма  Аукционные,доставка,�
   ResultTotal();
 };
 
+// добавить или отнять сумму
+function Slider_range(){
+   slider_USD = slider.value;
+   if (slider.value.length > 1) {
+     DeliverytoPort.textContent = priceCea +  +slider_USD +" $";
+     sum += +slider_USD;
+     ResultTotal();
+   }  
+}
+
+
 
  function RESETFUNCTION() {
   DeliverytoPort.textContent = 0;
@@ -1125,7 +1136,7 @@ function deliveryAmount(){ //Сумма  Аукционные,доставка,�
  };
 
 function ResultTotal() {
-  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol()) + slider_USD + Math.round(CustomEngine*EUR_USD) +" $";
+  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol())  + Math.round(CustomEngine*EUR_USD) +" $";
 }
 
 
@@ -1158,13 +1169,10 @@ PreparationExportdocumentsCheck.addEventListener("change",CheckDockument);
 
 
 let slider = document.getElementById("myRange");
-let output = document.getElementById("demo");
 
-output.innerHTML = slider.value;
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-  slider_USD = +this.value;
-  ResultTotal();
 
-}
+
+
+slider.addEventListener("input", Slider_range);
+
