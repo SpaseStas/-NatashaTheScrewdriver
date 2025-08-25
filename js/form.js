@@ -362,53 +362,56 @@ function calculationFees(){
     let InternetBidFee = 0; 
 
     if (priceLot > 0 && priceLot <= 99.99) {InternetBidFee = 0}
-      else if(priceLot > 99.99 && priceLot <= 499.99) {InternetBidFee = 49.00}
-      else if(priceLot > 499.99 && priceLot <= 999.99) {InternetBidFee = 59.00}
-      else if(priceLot > 999.99 && priceLot <= 1499.99) {InternetBidFee = 79.00}
-      else if(priceLot > 1499.99 && priceLot <= 1999.99) {InternetBidFee = 89.00}
-      else if(priceLot > 1999.99 && priceLot <= 3999.99) {InternetBidFee = 99.00}
-      else if(priceLot > 3999.99 && priceLot <= 5999.99) {InternetBidFee = 109.00}
-      else if(priceLot > 5999.99 && priceLot <= 7999.99) {InternetBidFee = 139.00}
-        else{InternetBidFee = 149};
+      else if(priceLot > 99.99 && priceLot <= 499.99) {InternetBidFee = 50.00}
+      else if(priceLot > 499.99 && priceLot <= 999.99) {InternetBidFee = 65.00}
+      else if(priceLot > 999.99 && priceLot <= 1499.99) {InternetBidFee = 85.00}
+      else if(priceLot > 1499.99 && priceLot <= 1999.99) {InternetBidFee = 95.00}
+      else if(priceLot > 1999.99 && priceLot <= 3999.99) {InternetBidFee = 110.00}
+      else if(priceLot > 3999.99 && priceLot <= 5999.99) {InternetBidFee = 125.00}
+      else if(priceLot > 5999.99 && priceLot <= 7999.99) {InternetBidFee = 145.00}
+        else{InternetBidFee = 160};
 
-    if (priceLot > 0 && priceLot <= 99.99) {buyerFee=25.00};
-    if (priceLot >= 50.00 && priceLot <= 99.99) {buyerFee=45.00};
-    if (priceLot >= 100.00  && priceLot <= 199.99) {buyerFee=80.00};
-    if (priceLot >= 200.00  && priceLot <= 299.99) {buyerFee=130.00};
-    if (priceLot >= 300.00  && priceLot <= 349.99) {buyerFee=150.00};
-    if (priceLot >= 350.00  && priceLot <= 399.99) {buyerFee=160.00};
-    if (priceLot >= 400.00  && priceLot <= 449.99) {buyerFee=170.00};
-    if (priceLot >= 450.00  && priceLot <= 499.99) {buyerFee=180.00};
-    if (priceLot >= 500.00  && priceLot <= 549.99) {buyerFee=200.00};
-    if (priceLot >= 550.00  && priceLot <= 599.99) {buyerFee=205.00};
-    if (priceLot >= 600.00  && priceLot <= 699.99) {buyerFee=235.00};
-    if (priceLot >= 700.00  && priceLot <= 799.99) {buyerFee=260.00};
-    if (priceLot >= 800.00  && priceLot <= 899.99) {buyerFee=280.00};
-    if (priceLot >= 900.00  && priceLot <= 999.99) {buyerFee=305.00};
-    if (priceLot >= 1000.00 && priceLot <= 1199.99) {buyerFee=355.00};
-    if (priceLot >= 1200.00 && priceLot <= 1299.99) {buyerFee=380.00};
-    if (priceLot >= 1300.00 && priceLot <= 1399.99) {buyerFee=400.00};
-    if (priceLot >= 1400.00 && priceLot <= 1499.99) {buyerFee=410.00};
-    if (priceLot >= 1500.00 && priceLot <= 1599.99) {buyerFee=420.00};    
-    if (priceLot >= 1600.00 && priceLot <= 1699.99) {buyerFee=440.00};
-    if (priceLot >= 1700.00 && priceLot <= 1799.99) {buyerFee=450.00};
-    if (priceLot >= 1800.00 && priceLot <= 1999.99) {buyerFee=465.00};
-    if (priceLot >= 2000.00 && priceLot <= 2399.99) {buyerFee=500.00};
-    if (priceLot >= 2400.00 && priceLot <= 2499.99) {buyerFee=525.00};
-    if (priceLot >= 2500.00 && priceLot <= 2999.99) {buyerFee=550.00};
-    if (priceLot >= 3000.00 && priceLot <= 3499.99) {buyerFee=650.00};
-    if (priceLot >= 3500.00 && priceLot <= 3999.99) {buyerFee=700.00};
-    if (priceLot >= 4000.00 && priceLot <= 4499.99) {buyerFee=725.00};
-    if (priceLot >= 4500.00 && priceLot <= 4999.99) {buyerFee=750.00};
-    if (priceLot >= 5000.00 && priceLot <= 5999.99) {buyerFee=775.00};
-    if (priceLot >= 6000.00 && priceLot <= 6999.99) {buyerFee=800.00};
-    if (priceLot >= 7000.00 && priceLot <= 7499.99) {buyerFee=825.00};
-    if (priceLot >= 7500.00 && priceLot <= 7999.99) {buyerFee=825.00};
-    if (priceLot >= 8000.00 && priceLot <= 9999.99) {buyerFee=850.00};
-    if (priceLot >= 10000.00 && priceLot <= 11499.99) {buyerFee=900.00};
-    if (priceLot >= 11500.00 && priceLot <= 11999.99) {buyerFee=900.00};
-    if (priceLot >= 12000.00 && priceLot <= 12499.99) {buyerFee=900.00};
-    if (priceLot >= 12500.00 && priceLot <= 14999.99) {buyerFee=900.00};
+    if (priceLot > 0 && priceLot <= 49.99) {buyerFee=0.00};
+    if (priceLot >= 50.00 && priceLot <= 99.99) {buyerFee=0.00};
+    if (priceLot >= 100.00  && priceLot <= 199.99) {buyerFee=25.00};
+    if (priceLot >= 200.00  && priceLot <= 299.99) {buyerFee=60.00};
+    if (priceLot >= 300.00  && priceLot <= 349.99) {buyerFee=85.00};
+    if (priceLot >= 350.00  && priceLot <= 399.99) {buyerFee=100.00};
+    if (priceLot >= 400.00  && priceLot <= 449.99) {buyerFee=125.00};
+    if (priceLot >= 450.00  && priceLot <= 499.99) {buyerFee=135.00};
+    if (priceLot >= 500.00  && priceLot <= 549.99) {buyerFee=145.00};
+    if (priceLot >= 550.00  && priceLot <= 599.99) {buyerFee=155.00};
+    if (priceLot >= 600.00  && priceLot <= 699.99) {buyerFee=170.00};
+    if (priceLot >= 700.00  && priceLot <= 799.99) {buyerFee=195.00};
+    if (priceLot >= 800.00  && priceLot <= 899.99) {buyerFee=215.00};
+    if (priceLot >= 900.00  && priceLot <= 999.99) {buyerFee=230.00};
+    if (priceLot >= 1000.00 && priceLot <= 1199.99) {buyerFee=250.00};
+    if (priceLot >= 1200.00 && priceLot <= 1299.99) {buyerFee=270.00};
+    if (priceLot >= 1300.00 && priceLot <= 1399.99) {buyerFee=285.00};
+    if (priceLot >= 1400.00 && priceLot <= 1499.99) {buyerFee=300.00};
+    if (priceLot >= 1500.00 && priceLot <= 1599.99) {buyerFee=315.00};    
+    if (priceLot >= 1600.00 && priceLot <= 1699.99) {buyerFee=330.00};
+    if (priceLot >= 1700.00 && priceLot <= 1799.99) {buyerFee=350.00};
+    if (priceLot >= 1800.00 && priceLot <= 1999.99) {buyerFee=370.00};
+    if (priceLot >= 2000.00 && priceLot <= 2399.99) {buyerFee=390.00};
+    if (priceLot >= 2400.00 && priceLot <= 2499.99) {buyerFee=425.00};
+    if (priceLot >= 2500.00 && priceLot <= 2999.99) {buyerFee=460.00};
+    if (priceLot >= 3000.00 && priceLot <= 3499.99) {buyerFee=505.00};
+    if (priceLot >= 3500.00 && priceLot <= 3999.99) {buyerFee=555.00};
+    if (priceLot >= 4000.00 && priceLot <= 4499.99) {buyerFee=600.00};
+    if (priceLot >= 4500.00 && priceLot <= 4999.99) {buyerFee=625.00};
+    if (priceLot >= 5000.00 && priceLot <= 5499.99) {buyerFee=650.00};
+    if (priceLot >= 5500.00 && priceLot <= 5999.99) {buyerFee=675.00};
+    if (priceLot >= 6000.00 && priceLot <= 6499.99) {buyerFee=700.00};
+    if (priceLot >= 6500.00 && priceLot <= 6999.99) {buyerFee=720.00};
+    if (priceLot >= 7000.00 && priceLot <= 7499.99) {buyerFee=755.00};
+    if (priceLot >= 7500.00 && priceLot <= 7999.99) {buyerFee=775.00};
+    if (priceLot >= 8000.00 && priceLot <= 8499.99) {buyerFee=800.00};
+    if (priceLot >= 8500.00 && priceLot <= 9999.99) {buyerFee=820.00};
+    if (priceLot >= 1000.00 && priceLot <= 11499.99) {buyerFee=850.00};
+    if (priceLot >= 11500.00 && priceLot <= 11999.99) {buyerFee=860.00};
+    if (priceLot >= 12000.00 && priceLot <= 12499.99) {buyerFee=875.00};
+    if (priceLot >= 12500.00 && priceLot <= 14999.99) {buyerFee=890.00};
     if (priceLot >= 15000) {buyerFee = priceLot * 0.075};
     buyerFee +=  ServiceFee + TitleHandingFee + environmentalFee + InternetBidFee +100 ; //за плату тачки + 100
     AuctionDealerFees.textContent = buyerFee + "$";
