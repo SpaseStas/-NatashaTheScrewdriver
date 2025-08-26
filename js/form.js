@@ -74,6 +74,7 @@ let sum = 0;
 let flag = false;
 let PreparationExportdocuments$ = 0; //Оформление экспортных документов
 let slider_USD = 0;
+let  calculationCash = 0; // 4% рассчёт комиссии банка
 
 let outHtml = document.getElementById("resulTotal");
 let result = 0; //вывовд в html итоговых значений
@@ -99,18 +100,19 @@ let salvageDocument = document.getElementById("Dacument").selectedIndex; // Те
 
 let DeliveyGeo = document.getElementById("DeliveyGeo"); //Доставка до порта клайпид/грузия
 let deliverytoPort= document.getElementById("DeliveyGeo").selectedIndex;; // текузаю локация прибытия(Грузия,Клайпида)
+let remittance = document.getElementById("remittance"); //4% комиссия банка
 let CustomsDutyEngine = document.getElementById("CustomsDutyEngine"); //Пошлина по объему
 let CustomsDutyPrice = document.getElementById("CustomsDutyPrice"); //Пошлина по цене
 let AuctionDealerFees = document.getElementById("AuctionDealerFees"); //Аукционные / дилерские сборы
 let CustomsDuties = document.getElementById("CustomsDuties"); //Тамаженный сборы и оформление
 let RecyclingFee = document.getElementById("RecyclingFee"); //Утиль сбор
+let expenses = document.getElementById("expenses"); //РАсходы СВХ
 let PreparationExportdocuments = document.getElementById("resultUSA"); //Оформление экспортных документов
 let PreparationExportdocumentsCheck = document.getElementById("PreparationExportdocumentsCheck"); //Оформление экспортных документов чекбокс
 let DeliverytoPort = document.getElementById("DeliverytoPort");
 let RegistrationDocuments = document.getElementById("Re-RegistrationDocuments"); //Перерегистрация техпаспорта
 let resultTotal = document.getElementById("resulTotal1");
 let OtherEV = document.getElementById("OtherEV"); //льготная таможня
-
 
 
 
@@ -144,6 +146,7 @@ function dataPrice(){
   OutPriceLot.textContent = priceLot + " $";
   CalculationOfCustomsDuty();
   calculationFees();
+  //calculationCashFlow();
 }
 
 function dataengineСapacity(){
@@ -211,7 +214,7 @@ function PreferentialCustoms(){
   if (flag === false) { flag = true}
     else if(flag === true) {flag = false};
   CalculationOfCustomsDuty();
-}
+};
 
 // оформление экспортных документов да/нет
 function CheckDockument(){
@@ -221,22 +224,23 @@ function CheckDockument(){
   else {
     PreparationExportdocuments$ = 0;
   };
-  PreparationExportdocuments.textContent = PreparationExportdocuments$ + " руб"
+  PreparationExportdocuments.textContent = PreparationExportdocuments$ + " руб — " + Math.round(PreparationExportdocuments$/BEL_USD) + " $";
         sumRub_Dol();
         ResultTotal();
-}
+};
 
 
 
 
 //рассчёт таможенной пошлины
 function CalculationOfCustomsDuty(){
-CustomsDuties.textContent =" 120 руб";
+CustomsDuties.textContent =("120 руб — " + Math.round(120 / BEL_USD) + " $");
+expenses.textContent = ("400 руб — " + Math.round(400 / BEL_USD) + " $");
    CustomPrice = 0;
    CustomEngine = 0;
   if (typeTC === 0) {   //Если втомобиль
   if (ageAuto === 0 && priceLot != " ") {  // до 3 лет
-    RecyclingFee.textContent = "544,50 руб";
+    RecyclingFee.textContent = ("544,50 руб — " + Math.round(545 / BEL_USD) + " $");
      let euro = priceLot * EUR_USD;  //перевод из $ в евро
      if (euro <= 8500) {
       CustomPrice = Math.round(euro * 0.54); 
@@ -272,7 +276,9 @@ CustomsDuties.textContent =" 120 руб";
     };
 
   if (ageAuto === 1 && engineСapacity != " ") {  // от 3 до 5 лет
-    RecyclingFee.textContent = "1089 руб";
+
+    BEL_USD
+    RecyclingFee.textContent = ("1089 руб — " + Math.round(1089 / BEL_USD) + " $");
       // CustomsDutyPrice.textContent = "0";
       if (engineСapacity <= 1000) {CustomEngine = engineСapacity * 1.5};
       if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomEngine = engineСapacity * 1.7};
@@ -283,7 +289,7 @@ CustomsDuties.textContent =" 120 руб";
 
   };
   if (ageAuto === 2 && engineСapacity != " ") { //старже 5 лет
-    RecyclingFee.textContent = "1089 руб";
+    RecyclingFee.textContent = ("1089 руб — " + Math.round(1089 / BEL_USD) + " $");
       // CustomsDutyPrice.textContent = "0";
       if (engineСapacity <= 1000) {CustomEngine = engineСapacity * 3};
       if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomEngine = engineСapacity * 3.2};
@@ -359,6 +365,7 @@ function calculationFees(){
     let ServiceFee = 95;
     let TitleHandingFee = 20;   
     let environmentalFee = 15;
+    let brokerFee = 35;
     let InternetBidFee = 0; 
 
     if (priceLot > 0 && priceLot <= 99.99) {InternetBidFee = 0}
@@ -408,12 +415,12 @@ function calculationFees(){
     if (priceLot >= 7500.00 && priceLot <= 7999.99) {buyerFee=775.00};
     if (priceLot >= 8000.00 && priceLot <= 8499.99) {buyerFee=800.00};
     if (priceLot >= 8500.00 && priceLot <= 9999.99) {buyerFee=820.00};
-    if (priceLot >= 1000.00 && priceLot <= 11499.99) {buyerFee=850.00};
+    if (priceLot >= 10000.00 && priceLot <= 11499.99) {buyerFee=850.00};
     if (priceLot >= 11500.00 && priceLot <= 11999.99) {buyerFee=860.00};
     if (priceLot >= 12000.00 && priceLot <= 12499.99) {buyerFee=875.00};
     if (priceLot >= 12500.00 && priceLot <= 14999.99) {buyerFee=890.00};
     if (priceLot >= 15000) {buyerFee = priceLot * 0.075};
-    buyerFee +=  ServiceFee + TitleHandingFee + environmentalFee + InternetBidFee +100 ; //за плату тачки + 100
+    buyerFee +=  ServiceFee + TitleHandingFee + environmentalFee + InternetBidFee +brokerFee ;
     AuctionDealerFees.textContent = buyerFee + "$";
   };
   deliveryAmount();
@@ -1058,8 +1065,19 @@ function calculationDeliverySea() {
     if (platform === 2 && deliverytoPort === 2){priceCea = 0};
     // priceCea+=1000;
      DeliverytoPort.textContent = priceCea +" $";
+
+
+    calculationCashFlow();
     deliveryAmount();
     ResultTotal();
+
+
+         function calculationCashFlow() {  // 4% комиссия от банка
+          if ( Number.isNaN(priceCea) || Number.isNaN(buyerFee) || Number.isNaN(priceLot) || priceCea <= 1000) {return};
+         calculationCash = (priceCea + buyerFee + priceLot) * 0.04;
+         remittance.textContent = calculationCash + " $"
+         console.log(calculationCash);
+       }
 };
  
 
@@ -1108,7 +1126,7 @@ function sumRub_Dol(){
 // сумма первых 3-х
 function deliveryAmount(){ //Сумма  Аукционные,доставка,доставка
   if (priceLot === null || priceLot === undefined || priceLot ===" ") {priceLot = 0}
-  sum = buyerFee + priceCea + priceMinsk + priceLot;
+  sum = buyerFee + priceCea + priceMinsk + priceLot +calculationCash;
   // outHtml.textContent = sum + " $";
   ResultTotal();
 };
