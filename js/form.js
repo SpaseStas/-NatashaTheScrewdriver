@@ -125,11 +125,13 @@ let DeliverytoPort = document.getElementById("DeliverytoPort");
 let RegistrationDocuments = document.getElementById("Re-RegistrationDocuments"); //Перерегистрация техпаспорта
 let resultTotal = document.getElementById("resulTotal1");
 let OtherEV = document.getElementById("OtherEV"); //льготная таможня
-let FaggotService = document.getElementById("faggotService");
-let CondomService = document.getElementById("condomService");
+let FaggotService = document.getElementById("faggotService"); // Услуга, Декларанта 
+let CondomService = document.getElementById("condomService"); // Услуга, Оценка автомобиля
+let FaggotService1 = document.getElementById("faggotService1"); // Услуга, Декларанта вывод
+let CondomService2 = document.getElementById("condomService2"); // Услуга, Оценка автомобиля вывод
 
 
-
+PreparationExportdocumentsCheck
 
 
 // ZaprosUSD_EUR();
@@ -242,6 +244,21 @@ function CheckDockument(){
         sumRub_Dol();
         ResultTotal();
 };
+
+function CheckFaggot() {
+  if (FaggotService.checked === true) {
+    FaggotService1.textContent = "200руб  —  " + Math.round( 200 / BEL_USD) + "$";
+  }
+  else FaggotService1.textContent = "0 руб";
+};
+
+function CheckCondom() {
+  if (CondomService.checked === true) {
+    CondomService2.textContent = "400руб  —  " + Math.round( 400 / BEL_USD) + "$";
+  }
+  else CondomService2.textContent = "0 руб";
+}
+
 
 
 
@@ -1397,17 +1414,8 @@ OtherEV.addEventListener("change",PreferentialCustoms);
 PreparationExportdocumentsCheck.addEventListener("change",CheckDockument);
 
 
- // FaggotService.addEventListener("change",faggot);
-
- // function faggot(){
- //  if (flag1 ==== false) {}
- // }
-
- // CondomService.addEventListener("change",condom);
-
- // function condom(){
- //  if (flag2 === false) {}
- // }
+FaggotService.addEventListener("change",CheckFaggot);
+CondomService.addEventListener("change",CheckCondom);
 
 
 let slider = document.getElementById("myRange");
