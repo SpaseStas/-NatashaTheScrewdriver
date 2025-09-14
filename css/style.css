@@ -38,6 +38,11 @@ header{
   justify-content: space-between;
 }
 
+
+.OtherItem p{
+  margin: 5px 0px;
+}
+
 .OtherItem input{
   width:20px;
 }

@@ -60,6 +60,15 @@ if (response.ok) { // если HTTP-статус в диапазоне 200-299
 };
 
 
+const CHICAGO = 1225;
+const HOUSTON = 1175;
+const LOS_ANGELES = 1800;
+const MIAMI = 1000;
+const NEWARK = 1025;
+const NORFOLK = 1000;
+const SAVANNAH = 950;
+const SEATTLE = 1525;
+
 
 
 let crosCursEur = document.getElementById("crosCursEur");
@@ -67,11 +76,14 @@ let crosCursDol = document.getElementById("crosCursDol");
 let priceMinsk = 0;
 let buyerFee = 0;
 let priceCea = 0;
+let priceLot = 0;
 let CustomPriceEngine = 0;
 let CustomPrice = 0;
 let CustomEngine = 0;
 let sum = 0;
 let flag = false;
+let flag1 = false;
+let flag2 = false;
 let PreparationExportdocuments$ = 0; //Оформление экспортных документов
 let slider_USD = 0;
 let  calculationCash = 0; // 4% рассчёт комиссии банка
@@ -80,7 +92,7 @@ let outHtml = document.getElementById("resulTotal");
 let result = 0; //вывовд в html итоговых значений
 // let engineСapacityValue = 0; //объем двигателя для кода
 let PriceLot = document.getElementById("PriceLot"); //мониторинг суммы лота
-let priceLot = document.getElementById("PriceLot").value;//сумма лота
+    priceLot = document.getElementById("PriceLot").value;//сумма лота
 let OutPriceLot = document.getElementById("OutPriceLot");//Вывод суммы лота
 let EngineСapacity = document.getElementById("engineСapacity"); //Мониторинг объём движка
 let engineСapacity = document.getElementById("engineСapacity").value; //объём движка
@@ -113,6 +125,8 @@ let DeliverytoPort = document.getElementById("DeliverytoPort");
 let RegistrationDocuments = document.getElementById("Re-RegistrationDocuments"); //Перерегистрация техпаспорта
 let resultTotal = document.getElementById("resulTotal1");
 let OtherEV = document.getElementById("OtherEV"); //льготная таможня
+let FaggotService = document.getElementById("faggotService");
+let CondomService = document.getElementById("condomService");
 
 
 
@@ -146,7 +160,7 @@ function dataPrice(){
   OutPriceLot.textContent = priceLot + " $";
   CalculationOfCustomsDuty();
   calculationFees();
-  //calculationCashFlow();
+  calculationCashFlow();
 }
 
 function dataengineСapacity(){
@@ -495,159 +509,160 @@ function calculationDeliverySea() {
     if (statelocation === 62) {priceCea = 2350} //EUGENE - OR
     if (statelocation === 63) {priceCea = 1150} //EXETER  - RI
     if (statelocation === 64) {priceCea = 1075} //FAIRBURN  - GA
-    if (statelocation === 65) {priceCea = 1475} //FLINT - MI
-    if (statelocation === 66) {priceCea = 1325} //FORT WAYNE - IN
-    if (statelocation === 67) {priceCea = 1050} //FREDERICKSBURG  - VA
-    if (statelocation === 68) {priceCea = 1175} //FREETOWN - MA
-    if (statelocation === 69) {priceCea = 1875} //FRESNO - CA
-    if (statelocation === 70) {priceCea = 1025} //FT. PIERCE - FL
-    if (statelocation === 71) {priceCea = 1150} //FT. WORTH - TX
-    if (statelocation === 72) {priceCea = 1125} //GASTONIA - NC
-    if (statelocation === 73) {priceCea = 1000} //GLASSBORO EAST - NJ
-    if (statelocation === 74) {priceCea = 1000} //GLASSBORO WEST - NJ
-    if (statelocation === 75) {priceCea = 2125} //GRAHAM - WA
-    if (statelocation === 76) {priceCea = 1075} //GREER - SС
-    if (statelocation === 77) {priceCea = 1205} //HAMMOND - IN
-    if (statelocation === 78) {priceCea = 950}  //HAMPTON - VA
-    if (statelocation === 79) {priceCea = 1075} //HARRISBURG - PA
-    if (statelocation === 80) {priceCea = 1025} //HARTFORD - CT
-    if (statelocation === 81) {priceCea = 1325} //HARTFORD CITY - IN
-    if (statelocation === 82) {priceCea = 1050} //HARTFORD SPRINGFIELD - CT
-    if (statelocation === 83) {priceCea = 1900} //HAYWARD - CA
-    if (statelocation === 84) {priceCea = 2725} //HELENA - MT
-    if (statelocation === 85) {priceCea = 2595} //HONOLULU - HI
-    if (statelocation === 86) {priceCea = 1055} //HOUSTON - TX
-    if (statelocation === 87) {priceCea = 1055} //HOUSTON EAST - TX
-    if (statelocation === 88) {priceCea = 1325} //INDIANAPOLIS - IN
-    if (statelocation === 89) {priceCea = 1425} //IONIA - MI
-    if (statelocation === 90) {priceCea = 1225} //JACKSON - MS
-    if (statelocation === 91) {priceCea = 1050} //JACKSONVILLE EAST - FL
-    if (statelocation === 92) {priceCea = 1050} //JACKSONVILLE NORTH - FL
-    if (statelocation === 93) {priceCea = 1050} //JACKSONVILLE WEST - FL
-    if (statelocation === 94) {priceCea = 1425} //KANSAS CITY - KS
-    if (statelocation === 95) {priceCea = 1775} //KINCHELOE - MI
-    if (statelocation === 96) {priceCea = 3500} //KENS TOWING HILO - HI
-    if (statelocation === 97) {priceCea = 1200} //KNOXVILLE - TN
-    if (statelocation === 98) {priceCea = 1425} //LANSING - MI
-    if (statelocation === 99) {priceCea = 1875} //LAS VEGAS - NV
-    if (statelocation === 100) {priceCea = 1875} //LAS VEGAS WEST - NV
-    if (statelocation === 101) {priceCea = 1350} //LEXINGTON WEST - KY
-    if (statelocation === 102) {priceCea = 1350} //LEXINGTON EAST - KY
-    if (statelocation === 103) {priceCea = 1475} //LINCOLN - NE
-    if (statelocation === 104) {priceCea = 1475} //LITTLE ROCK - AR
-    if (statelocation === 105) {priceCea = 1650} //LONG BEACH - CA
-    if (statelocation === 106) {priceCea = 1050} //LONG ISLAND - NY
-    if (statelocation === 107) {priceCea = 1150} //LONGVIEW - TX
-    if (statelocation === 108) {priceCea = 1660} //LOS ANGELES - CA
-    if (statelocation === 109) {priceCea = 1350} //LOUISVILLE - KY
-    if (statelocation === 110) {priceCea = 1150} //LUFKIN - TX
-    if (statelocation === 111) {priceCea = 1100} //LUMBERTON - NC
-    if (statelocation === 112) {priceCea = 1275} //LYMAN - ME
-    if (statelocation === 113) {priceCea = 1050} //MACON - GA
-    if (statelocation === 114) {priceCea = 1325} //MADISON - WI
-    if (statelocation === 115) {priceCea = 1325} //MADISON SOUTH - WI
-    if (statelocation === 116) {priceCea = 1900} //MARTINEZ - CA
-    if (statelocation === 117) {priceCea = 1225} //MCALLEN - TX
-    if (statelocation === 118) {priceCea = 1100} //MEBANE - NC
-    if (statelocation === 119) {priceCea = 1300} //MEMPHIS - TN
-    if (statelocation === 120) {priceCea = 1800} //MENTONE - CA
-    if (statelocation === 121) {priceCea = 950} //MIAMI CENTRAL - FL
-    if (statelocation === 122) {priceCea = 950} //MIAMI NORTH - FL
-    if (statelocation === 123) {priceCea = 975} //MIAMI SOUTH - FL
-    if (statelocation === 124) {priceCea = 1250} //MILWAUKEE - Stutervant sublot - WI
-    if (statelocation === 125) {priceCea = 1250} //MILWAUKEE - Waukesha sublot - WI
-    if (statelocation === 126) {priceCea = 1250} //MILWAUKEE - WI
-    if (statelocation === 127) {priceCea = 1250} //MILWAUKEE SOUTH - WI
-    if (statelocation === 128) {priceCea = 1250} //MILWAUKEE NORTH - WI
-    if (statelocation === 129) {priceCea = 1250} //MILWAUKEE- Yard 339 Milwaukee sublot - WI
-    if (statelocation === 130) {priceCea = 1475} //MINNEAPOLIS - MN
-    if (statelocation === 131) {priceCea = 1475} //MINNEAPOLIS NORTH - MN
-    if (statelocation === 132) {priceCea = 1425} //MO - COLUMBIA - MO
-    if (statelocation === 133) {priceCea = 1200} //MOBILE - AL
-    if (statelocation === 134) {priceCea = 1200} //MOBILE SOUTH - AL
-    if (statelocation === 135) {priceCea = 1100} //MOCKSVILLE  - NC
-    if (statelocation === 136) {priceCea = 1200} //MONTGOMERY - AL
-    if (statelocation === 137) {priceCea = 1250} //N.Boston-ROWLEY Sublot - MA
-    if (statelocation === 138) {priceCea = 1200} //NASHVILLE - TN
-    if (statelocation === 139) {priceCea = 1225} //NEW ORLEANS - LA
-    if (statelocation === 140) {priceCea = 1025} //NEWBURGH - NY
-    if (statelocation === 141) {priceCea = 1175} //NORTH BOSTON - MA
-    if (statelocation === 142) {priceCea = 1075} //NORTH CHARLESTON - SC
-    if (statelocation === 143) {priceCea = 2175} //NORTH SEATTLE - WA
-    if (statelocation === 144) {priceCea = 1125} //OCALA - FL
-    if (statelocation === 145) {priceCea = 2050} //OGDEN - UT
-    if (statelocation === 146) {priceCea = 1275} //OKLAHOMA CITY - OK
-    if (statelocation === 147) {priceCea = 1075} //ORLANDO - FL
-    if (statelocation === 148) {priceCea = 1075} //ORLANDO NORTH - FL
-    if (statelocation === 149) {priceCea = 1075} //ORLANDO SOUTH - FL
-    if (statelocation === 150) {priceCea = 2325} //PASCO - WA
-    if (statelocation === 151) {priceCea = 1325} //PEORIA - IL
-    if (statelocation === 152) {priceCea = 1000} //PHILADELPHIA - PA
-    if (statelocation === 153) {priceCea = 1000} //PHILADELPHIA EAST - PA
-    if (statelocation === 154) {priceCea = 1850} //PHOENIX - AR
-    if (statelocation === 155) {priceCea = 1200} //PITTSBURGH EAST - PA
-    if (statelocation === 156) {priceCea = 1250} //PITTSBURGH NORTH - PA
-    if (statelocation === 157) {priceCea = 1250} //PITTSBURGH SOUTH - PA
-    if (statelocation === 158) {priceCea = 1250} //PITTSBURGH WEST - PA
-    if (statelocation === 159) {priceCea = 2225} //PORTLAND NORTH - OR
-    if (statelocation === 160) {priceCea = 2275} //PORTLAND SOUTH - OR
-    if (statelocation === 161) {priceCea = 1050} //PUNTA GORDA - FL
-    if (statelocation === 162) {priceCea = 1100} //PUNTA GORDA SOUTH - FL
-    if (statelocation === 163) {priceCea = 1100} //RALEIGH - NC
-    if (statelocation === 164) {priceCea = 1700} //RANCHO CUCAMONGA - CA
-    if (statelocation === 165) {priceCea = 2300} //REDDING - CA
-    if (statelocation === 166) {priceCea = 2050} //RENO - NV
-    if (statelocation === 167) {priceCea = 975} //RICHMOND - VA
-    if (statelocation === 168) {priceCea = 975} //RICHMOND EAST - VA
-    if (statelocation === 169) {priceCea = 1250} //ROCHESTER - NY
-    if (statelocation === 170) {priceCea = 1900} //SACRAMENTO - CA
-    if (statelocation === 171) {priceCea = 2150} //SALT LAKE CITY - UT
-    if (statelocation === 172) {priceCea = 2050} //SALT LAKE CITY NORTH - UT
-    if (statelocation === 173) {priceCea = 1175} //SAN ANTONIO - TX
-    if (statelocation === 174) {priceCea = 1700} //SAN BERNARDINO - CA
-    if (statelocation === 175) {priceCea = 1730} //SAN DIEGO - CA
-    if (statelocation === 176) {priceCea = 1900} //SAN JOSE - CA
-    if (statelocation === 177) {priceCea = 925} //SAVANNAH - GA
-    if (statelocation === 178) {priceCea = 975} //SAVANNAH / VERTIA SUBLOT-Georgia Copart - GA
-    if (statelocation === 179) {priceCea = 1075} //SC - COLUMBIA - SC
-    if (statelocation === 180) {priceCea = 1050} //SCRANTON - PA
-    if (statelocation === 181) {priceCea = 1125} //SEAFORD - DE
-    if (statelocation === 182) {priceCea = 1190} //SHREVEPORT - LA
-    if (statelocation === 183) {priceCea = 1500} //SIKESTON - MO
-    if (statelocation === 184) {priceCea = 1900} //SOSACRAMENTO - CA
-    if (statelocation === 185) {priceCea = 950} //SOMERVILLE - NJ
-    if (statelocation === 186) {priceCea = 1175} //SOUTH BOSTON - MA
-    if (statelocation === 187) {priceCea = 1375} //Southern Illinois - IL
-    if (statelocation === 188) {priceCea = 1100} //SPARTANBURG - SC
-    if (statelocation === 189) {priceCea = 2325} //SPOKANE - WA
-    if (statelocation === 190) {priceCea = 1425} //SPRINGFIELD - MO
-    if (statelocation === 191) {priceCea = 1525} //ST. CLOUD - MN
-    if (statelocation === 192) {priceCea = 1375} //ST. LOUIS - MO
-    if (statelocation === 193) {priceCea = 1700} //SUN VALLEY - CA
-    if (statelocation === 194) {priceCea = 1125} //SYRACUSE - NY
-    if (statelocation === 195) {priceCea = 1125} //TALLAHASSEE - FL
-    if (statelocation === 196) {priceCea = 1075} //TAMPA SOUTH - FL
-    if (statelocation === 197) {priceCea = 1100} //TAMPA SOUTH - Mulberry Sublot - FL
-    if (statelocation === 198) {priceCea = 1225} //TANNER - AL
-    if (statelocation === 199) {priceCea = 1075} //TIFTON - GA
-    if (statelocation === 200) {priceCea = 3700} //TOW GUYS KAMUELA - HI
-    if (statelocation === 201) {priceCea = 950} //TRENTON - NJ
-    if (statelocation === 202) {priceCea = 1900} //TUCSON - AZ
-    if (statelocation === 203) {priceCea = 1350} //TULSA - OK
-    if (statelocation === 204) {priceCea = 1900} //VALLEJO - CA
-    if (statelocation === 205) {priceCea = 1700} //VAN NUYS - CA
-    if (statelocation === 206) {priceCea = 1200} //WACO - TX
-    if (statelocation === 207) {priceCea = 1575} //WALTON - KY
-    if (statelocation === 208) {priceCea = 1100} //WASHINGTON DC - MD
-    if (statelocation === 209) {priceCea = 1200} //WEBSTER - NH
-    if (statelocation === 210) {priceCea = 995} //WEST PALM BEACH - FL
-    if (statelocation === 211) {priceCea = 1175} //WEST WARREN - MA
-    if (statelocation === 212) {priceCea = 1205} //WHEELING - IL
-    if (statelocation === 213) {priceCea = 1275} //Windham - NY
-    if (statelocation === 214) {priceCea = 1425} //WICHITA - KS
-    if (statelocation === 215) {priceCea = 1075} //YORK HAVEN - PA
-    if (statelocation === 216) {priceCea = 1425} //WAYLAND - MI
-      priceCea+=1000;
+    if (statelocation === 65) {priceCea = 1350} //FAYETTEVILLE - AR
+    if (statelocation === 66) {priceCea = 1475} //FLINT - MI
+    if (statelocation === 67) {priceCea = 1325} //FORT WAYNE - IN
+    if (statelocation === 68) {priceCea = 1050} //FREDERICKSBURG  - VA
+    if (statelocation === 69) {priceCea = 1175} //FREETOWN - MA
+    if (statelocation === 70) {priceCea = 1875} //FRESNO - CA
+    if (statelocation === 71) {priceCea = 1025} //FT. PIERCE - FL
+    if (statelocation === 72) {priceCea = 1150} //FT. WORTH - TX
+    if (statelocation === 73) {priceCea = 1125} //GASTONIA - NC
+    if (statelocation === 74) {priceCea = 1000} //GLASSBORO EAST - NJ
+    if (statelocation === 75) {priceCea = 1000} //GLASSBORO WEST - NJ
+    if (statelocation === 76) {priceCea = 2125} //GRAHAM - WA
+    if (statelocation === 77) {priceCea = 1075} //GREER - SС
+    if (statelocation === 78) {priceCea = 1205} //HAMMOND - IN
+    if (statelocation === 79) {priceCea = 950}  //HAMPTON - VA
+    if (statelocation === 80) {priceCea = 1075} //HARRISBURG - PA
+    if (statelocation === 81) {priceCea = 1025} //HARTFORD - CT
+    if (statelocation === 82) {priceCea = 1325} //HARTFORD CITY - IN
+    if (statelocation === 83) {priceCea = 1050} //HARTFORD SPRINGFIELD - CT
+    if (statelocation === 84) {priceCea = 1900} //HAYWARD - CA
+    if (statelocation === 85) {priceCea = 2725} //HELENA - MT
+    if (statelocation === 86) {priceCea = 2595} //HONOLULU - HI
+    if (statelocation === 87) {priceCea = 1055} //HOUSTON - TX
+    if (statelocation === 88) {priceCea = 1055} //HOUSTON EAST - TX
+    if (statelocation === 89) {priceCea = 1325} //INDIANAPOLIS - IN
+    if (statelocation === 90) {priceCea = 1425} //IONIA - MI
+    if (statelocation === 91) {priceCea = 1225} //JACKSON - MS
+    if (statelocation === 92) {priceCea = 1050} //JACKSONVILLE EAST - FL
+    if (statelocation === 93) {priceCea = 1050} //JACKSONVILLE NORTH - FL
+    if (statelocation === 94) {priceCea = 1050} //JACKSONVILLE WEST - FL
+    if (statelocation === 95) {priceCea = 1425} //KANSAS CITY - KS
+    if (statelocation === 96) {priceCea = 1775} //KINCHELOE - MI
+    if (statelocation === 97) {priceCea = 3500} //KENS TOWING HILO - HI
+    if (statelocation === 98) {priceCea = 1200} //KNOXVILLE - TN
+    if (statelocation === 99) {priceCea = 1425} //LANSING - MI
+    if (statelocation === 100) {priceCea = 1875} //LAS VEGAS - NV
+    if (statelocation === 101) {priceCea = 1875} //LAS VEGAS WEST - NV
+    if (statelocation === 102) {priceCea = 1350} //LEXINGTON WEST - KY
+    if (statelocation === 103) {priceCea = 1350} //LEXINGTON EAST - KY
+    if (statelocation === 104) {priceCea = 1475} //LINCOLN - NE
+    if (statelocation === 105) {priceCea = 1475} //LITTLE ROCK - AR
+    if (statelocation === 106) {priceCea = 1650} //LONG BEACH - CA
+    if (statelocation === 107) {priceCea = 1050} //LONG ISLAND - NY
+    if (statelocation === 108) {priceCea = 1150} //LONGVIEW - TX
+    if (statelocation === 109) {priceCea = 1660} //LOS ANGELES - CA
+    if (statelocation === 110) {priceCea = 1350} //LOUISVILLE - KY
+    if (statelocation === 111) {priceCea = 1150} //LUFKIN - TX
+    if (statelocation === 112) {priceCea = 1100} //LUMBERTON - NC
+    if (statelocation === 113) {priceCea = 1275} //LYMAN - ME
+    if (statelocation === 114) {priceCea = 1050} //MACON - GA
+    if (statelocation === 115) {priceCea = 1325} //MADISON - WI
+    if (statelocation === 116) {priceCea = 1325} //MADISON SOUTH - WI
+    if (statelocation === 117) {priceCea = 1900} //MARTINEZ - CA
+    if (statelocation === 118) {priceCea = 1225} //MCALLEN - TX
+    if (statelocation === 119) {priceCea = 1100} //MEBANE - NC
+    if (statelocation === 120) {priceCea = 1300} //MEMPHIS - TN
+    if (statelocation === 121) {priceCea = 1800} //MENTONE - CA
+    if (statelocation === 122) {priceCea = 950} //MIAMI CENTRAL - FL
+    if (statelocation === 123) {priceCea = 950} //MIAMI NORTH - FL
+    if (statelocation === 124) {priceCea = 975} //MIAMI SOUTH - FL
+    if (statelocation === 125) {priceCea = 1250} //MILWAUKEE - Stutervant sublot - WI
+    if (statelocation === 126) {priceCea = 1250} //MILWAUKEE - Waukesha sublot - WI
+    if (statelocation === 127) {priceCea = 1250} //MILWAUKEE - WI
+    if (statelocation === 128) {priceCea = 1250} //MILWAUKEE SOUTH - WI
+    if (statelocation === 129) {priceCea = 1250} //MILWAUKEE NORTH - WI
+    if (statelocation === 130) {priceCea = 1250} //MILWAUKEE- Yard 339 Milwaukee sublot - WI
+    if (statelocation === 131) {priceCea = 1475} //MINNEAPOLIS - MN
+    if (statelocation === 132) {priceCea = 1475} //MINNEAPOLIS NORTH - MN
+    if (statelocation === 133) {priceCea = 1425} //MO - COLUMBIA - MO
+    if (statelocation === 134) {priceCea = 1200} //MOBILE - AL
+    if (statelocation === 135) {priceCea = 1200} //MOBILE SOUTH - AL
+    if (statelocation === 136) {priceCea = 1100} //MOCKSVILLE  - NC
+    if (statelocation === 137) {priceCea = 1200} //MONTGOMERY - AL
+    if (statelocation === 138) {priceCea = 1250} //N.Boston-ROWLEY Sublot - MA
+    if (statelocation === 139) {priceCea = 1200} //NASHVILLE - TN
+    if (statelocation === 140) {priceCea = 1225} //NEW ORLEANS - LA
+    if (statelocation === 141) {priceCea = 1025} //NEWBURGH - NY
+    if (statelocation === 142) {priceCea = 1175} //NORTH BOSTON - MA
+    if (statelocation === 143) {priceCea = 1075} //NORTH CHARLESTON - SC
+    if (statelocation === 144) {priceCea = 2175} //NORTH SEATTLE - WA
+    if (statelocation === 145) {priceCea = 1125} //OCALA - FL
+    if (statelocation === 146) {priceCea = 2050} //OGDEN - UT
+    if (statelocation === 147) {priceCea = 1275} //OKLAHOMA CITY - OK
+    if (statelocation === 148) {priceCea = 1075} //ORLANDO - FL
+    if (statelocation === 149) {priceCea = 1075} //ORLANDO NORTH - FL
+    if (statelocation === 150) {priceCea = 1075} //ORLANDO SOUTH - FL
+    if (statelocation === 151) {priceCea = 2325} //PASCO - WA
+    if (statelocation === 152) {priceCea = 1325} //PEORIA - IL
+    if (statelocation === 153) {priceCea = 1000} //PHILADELPHIA - PA
+    if (statelocation === 154) {priceCea = 1000} //PHILADELPHIA EAST - PA
+    if (statelocation === 155) {priceCea = 1850} //PHOENIX - AR
+    if (statelocation === 156) {priceCea = 1200} //PITTSBURGH EAST - PA
+    if (statelocation === 157) {priceCea = 1250} //PITTSBURGH NORTH - PA
+    if (statelocation === 158) {priceCea = 1250} //PITTSBURGH SOUTH - PA
+    if (statelocation === 159) {priceCea = 1250} //PITTSBURGH WEST - PA
+    if (statelocation === 160) {priceCea = 2225} //PORTLAND NORTH - OR
+    if (statelocation === 161) {priceCea = 2275} //PORTLAND SOUTH - OR
+    if (statelocation === 162) {priceCea = 1050} //PUNTA GORDA - FL
+    if (statelocation === 163) {priceCea = 1100} //PUNTA GORDA SOUTH - FL
+    if (statelocation === 164) {priceCea = 1100} //RALEIGH - NC
+    if (statelocation === 165) {priceCea = 1700} //RANCHO CUCAMONGA - CA
+    if (statelocation === 166) {priceCea = 2300} //REDDING - CA
+    if (statelocation === 167) {priceCea = 2050} //RENO - NV
+    if (statelocation === 168) {priceCea = 975} //RICHMOND - VA
+    if (statelocation === 169) {priceCea = 975} //RICHMOND EAST - VA
+    if (statelocation === 170) {priceCea = 1250} //ROCHESTER - NY
+    if (statelocation === 171) {priceCea = 1900} //SACRAMENTO - CA
+    if (statelocation === 172) {priceCea = 2150} //SALT LAKE CITY - UT
+    if (statelocation === 173) {priceCea = 2050} //SALT LAKE CITY NORTH - UT
+    if (statelocation === 174) {priceCea = 1175} //SAN ANTONIO - TX
+    if (statelocation === 175) {priceCea = 1700} //SAN BERNARDINO - CA
+    if (statelocation === 176) {priceCea = 1730} //SAN DIEGO - CA
+    if (statelocation === 177) {priceCea = 1900} //SAN JOSE - CA
+    if (statelocation === 178) {priceCea = 925} //SAVANNAH - GA
+    if (statelocation === 179) {priceCea = 975} //SAVANNAH / VERTIA SUBLOT-Georgia Copart - GA
+    if (statelocation === 180) {priceCea = 1075} //SC - COLUMBIA - SC
+    if (statelocation === 181) {priceCea = 1050} //SCRANTON - PA
+    if (statelocation === 182) {priceCea = 1125} //SEAFORD - DE
+    if (statelocation === 183) {priceCea = 1190} //SHREVEPORT - LA
+    if (statelocation === 184) {priceCea = 1500} //SIKESTON - MO
+    if (statelocation === 185) {priceCea = 1900} //SOSACRAMENTO - CA
+    if (statelocation === 186) {priceCea = 950} //SOMERVILLE - NJ
+    if (statelocation === 187) {priceCea = 1175} //SOUTH BOSTON - MA
+    if (statelocation === 188) {priceCea = 1375} //Southern Illinois - IL
+    if (statelocation === 189) {priceCea = 1100} //SPARTANBURG - SC
+    if (statelocation === 190) {priceCea = 2325} //SPOKANE - WA
+    if (statelocation === 191) {priceCea = 1425} //SPRINGFIELD - MO
+    if (statelocation === 192) {priceCea = 1525} //ST. CLOUD - MN
+    if (statelocation === 193) {priceCea = 1375} //ST. LOUIS - MO
+    if (statelocation === 194) {priceCea = 1700} //SUN VALLEY - CA
+    if (statelocation === 195) {priceCea = 1125} //SYRACUSE - NY
+    if (statelocation === 196) {priceCea = 1125} //TALLAHASSEE - FL
+    if (statelocation === 197) {priceCea = 1075} //TAMPA SOUTH - FL
+    if (statelocation === 198) {priceCea = 1100} //TAMPA SOUTH - Mulberry Sublot - FL
+    if (statelocation === 199) {priceCea = 1225} //TANNER - AL
+    if (statelocation === 200) {priceCea = 1075} //TIFTON - GA
+    if (statelocation === 201) {priceCea = 3700} //TOW GUYS KAMUELA - HI
+    if (statelocation === 202) {priceCea = 950} //TRENTON - NJ
+    if (statelocation === 203) {priceCea = 1900} //TUCSON - AZ
+    if (statelocation === 204) {priceCea = 1350} //TULSA - OK
+    if (statelocation === 205) {priceCea = 1900} //VALLEJO - CA
+    if (statelocation === 206) {priceCea = 1700} //VAN NUYS - CA
+    if (statelocation === 207) {priceCea = 1200} //WACO - TX
+    if (statelocation === 208) {priceCea = 1575} //WALTON - KY
+    if (statelocation === 209) {priceCea = 1100} //WASHINGTON DC - MD
+    if (statelocation === 210) {priceCea = 1200} //WEBSTER - NH
+    if (statelocation === 211) {priceCea = 995} //WEST PALM BEACH - FL
+    if (statelocation === 212) {priceCea = 1175} //WEST WARREN - MA
+    if (statelocation === 213) {priceCea = 1205} //WHEELING - IL
+    if (statelocation === 214) {priceCea = 1275} //Windham - NY
+    if (statelocation === 215) {priceCea = 1425} //WICHITA - KS
+    if (statelocation === 216) {priceCea = 1075} //YORK HAVEN - PA
+    if (statelocation === 217) {priceCea = 1425} //WAYLAND - MI
+      priceCea+=1135;
   };
 
   if (platform === 2 && deliverytoPort === 1) {
@@ -806,7 +821,7 @@ function calculationDeliverySea() {
     if (statelocation1 === 152) {priceCea = 1175} //ROANOKE - VA
     if (statelocation1 === 153) {priceCea = 1250} //ROCHESTER - NY
     if (statelocation1 === 154) {priceCea = 1150} //ROSEDALE - MD
-    if (statelocation1 === 155) {priceCea = 1150} //SACRAMENTO - CA    3333
+    if (statelocation1 === 155) {priceCea = 1900} //SACRAMENTO - CA    
     if (statelocation1 === 156) {priceCea = 2050} //SALT LAKE CITY - UT
     if (statelocation1 === 157) {priceCea = 1175} //SAN ANTONIO - TX
     if (statelocation1 === 158) {priceCea = 1175} //SAN ANTONIO-SOUTH - TX
@@ -840,230 +855,422 @@ function calculationDeliverySea() {
     if (statelocation1 === 186) {priceCea = 1175} //WILMINGTON - NC
     if (statelocation1 === 187) {priceCea = 1225} //YORK HAVEN - PA
     if (statelocation1 === 188) {priceCea = 1075} //YORK SPRINGS - PA
-    priceCea+=1000;
+    priceCea+=1135;
   };
     if (platform === 1 && deliverytoPort === 2){
     if (statelocation === 0) {priceCea = 0}
-    if (statelocation === 1) {priceCea = 1225}   
-    if (statelocation === 2) {priceCea = 1800} //ADELANTO - CA
-    if (statelocation === 3) {priceCea = 3650} //ADP TOWING MAUI -HI
-    if (statelocation === 4) {priceCea = 1075}  //ALBANY - NY
-    if (statelocation === 5) {priceCea = 1475}  //ALBUQUERQUE - PA
-    if (statelocation === 6) {priceCea = 1250}  //ALTOONA - PA
-    if (statelocation === 7) {priceCea = 1400}  //AMARILLO - TX
-    if (statelocation === 8) {priceCea = 1300}  //ANDREWS - TX
-    if (statelocation === 9) {priceCea = 1900}  //ANTELOPE - CA
-    if (statelocation === 10) {priceCea = 1350}  //APPLETON - WI
-    if (statelocation === 11) {priceCea = 1125} //ATLANTA EAST - GA
-    if (statelocation === 12) {priceCea = 1125} //ATLANTA NORTH - GA
-    if (statelocation === 13) {priceCea = 1100} //ATLANTA SOUTH - GA
-    if (statelocation === 14) {priceCea = 1100} //ATLANTA WEST - GA
-    if (statelocation === 15) {priceCea = 1075} //Augusta - GA
-    if (statelocation === 16) {priceCea = 1125} //AUSTIN - TX
-    if (statelocation === 17) {priceCea = 1850} //BAKERSFIELD - CA
-    if (statelocation === 18) {priceCea = 1125} //BALTIMORE - MD
-    if (statelocation === 19) {priceCea = 1125} //BALTIMORE EAST - MD
-    if (statelocation === 20) {priceCea = 1225} //BATON ROUGE - LA
-    if (statelocation === 21) {priceCea = 2825} //BILLINGS - MT
-    if (statelocation === 22) {priceCea = 1175} //BIRMINGHAM - AL
-    if (statelocation === 23) {priceCea = 2425} //BOISE - ID
-    if (statelocation === 24) {priceCea = 1300} //BUFFALO - NY
-    if (statelocation === 25) {priceCea = 1200} //CANDIA - NH
-    if (statelocation === 26) {priceCea = 1100} //CARTERSVILLE - GA
-    if (statelocation === 27) {priceCea = 1150} //CHAMBERSBURG - PA
-    if (statelocation === 28) {priceCea = 1425} //CHARLESTON - WV
-    if (statelocation === 29) {priceCea = 1205} //CHICAGO NORTH - IL
-    if (statelocation === 30) {priceCea = 1205} //CHICAGO SOUTH - IL
-    if (statelocation === 31) {priceCea = 1205} //CHICAGO SOUTH-Wood
-    if (statelocation === 32) {priceCea = 1100} //CHINA GROVE - NC
-    if (statelocation === 33) {priceCea = 1325} //CICERO - IN
-    if (statelocation === 34) {priceCea = 1350} //CLEVELAND EAST - OH
-    if (statelocation === 35) {priceCea = 1350} //CLEVELAND WEST - OH
-    if (statelocation === 36) {priceCea = 1525} //COLORADO SPRINGS - CO
-    if (statelocation === 37) {priceCea = 1350} //COLUMBUS - OH
-    if (statelocation === 38) {priceCea = 1100} //CONCORD - NC
-    if (statelocation === 39) {priceCea = 1150} //CORPUS CHRISTI - TX
-    if (statelocation === 40) {priceCea = 1075} //CRASHEDTOYS ATLANTA - GA
-    if (statelocation === 41) {priceCea = 1150} //CRASHEDTOYS DALLAS  - TX
-    if (statelocation === 42) {priceCea = 1475} //CRASHEDTOYS EAST BETHEL - MN
-    if (statelocation === 43) {priceCea = 1350} //CRASHEDTOYS ELDRIDGE - IA
-    if (statelocation === 44) {priceCea = 1475} //CRASHEDTOYS MINNEAPOLIS - MN
-    if (statelocation === 45) {priceCea = 1950} //CRASHEDTOYS SACRAMENTO - CA
-    if (statelocation === 46) {priceCea = 1150} //DALLAS - TX
-    if (statelocation === 47) {priceCea = 1150} //DALLAS SOUTH - TX
-    if (statelocation === 48) {priceCea = 1100} //DANVILLE - VA
-    if (statelocation === 49) {priceCea = 1350} //DAVENPORT - 169 Davenport sublot - IA
-    if (statelocation === 50) {priceCea = 1350} //DAVENPORT - IA
-    if (statelocation === 51) {priceCea = 1350} //DAYTON - OH
-    if (statelocation === 52) {priceCea = 1675} //DENVER - CO
-    if (statelocation === 53) {priceCea = 1675} //DENVER CENTRAL - CO
-    if (statelocation === 54) {priceCea = 1675} //DENVER SOUTH - CO
-    if (statelocation === 55) {priceCea = 1425} //DES MOINES - IA
-    if (statelocation === 56) {priceCea = 1425} //DETROIT - MI
-    if (statelocation === 57) {priceCea = 4325} //DK TOWING KAUAI - HI
-    if (statelocation === 58) {priceCea = 1175} //DOTHAN - AL
-    if (statelocation === 59) {priceCea = 1205} //DYER - IN
-    if (statelocation === 60) {priceCea = 1350} //EARLINGTON - KY
-    if (statelocation === 61) {priceCea = 1300} //EL PASO - TX
-    if (statelocation === 62) {priceCea = 2350} //EUGENE - OR
-    if (statelocation === 63) {priceCea = 1150} //EXETER  - RI
-    if (statelocation === 64) {priceCea = 1075} //FAIRBURN  - GA
-    if (statelocation === 65) {priceCea = 1475} //FLINT - MI
-    if (statelocation === 66) {priceCea = 1325} //FORT WAYNE - IN
-    if (statelocation === 67) {priceCea = 1050} //FREDERICKSBURG  - VA
-    if (statelocation === 68) {priceCea = 1175} //FREETOWN - MA
-    if (statelocation === 69) {priceCea = 1875} //FRESNO - CA
-    if (statelocation === 70) {priceCea = 1025} //FT. PIERCE - FL
-    if (statelocation === 71) {priceCea = 1150} //FT. WORTH - TX
-    if (statelocation === 72) {priceCea = 1125} //GASTONIA - NC
-    if (statelocation === 73) {priceCea = 1000} //GLASSBORO EAST - NJ
-    if (statelocation === 74) {priceCea = 1000} //GLASSBORO WEST - NJ
-    if (statelocation === 75) {priceCea = 2125} //GRAHAM - WA
-    if (statelocation === 76) {priceCea = 1075} //GREER - SС
-    if (statelocation === 77) {priceCea = 1205} //HAMMOND - IN
-    if (statelocation === 78) {priceCea = 950}  //HAMPTON - VA
-    if (statelocation === 79) {priceCea = 1075} //HARRISBURG - PA
-    if (statelocation === 80) {priceCea = 1025} //HARTFORD - CT
-    if (statelocation === 81) {priceCea = 1325} //HARTFORD CITY - IN
-    if (statelocation === 82) {priceCea = 1050} //HARTFORD SPRINGFIELD - CT
-    if (statelocation === 83) {priceCea = 1900} //HAYWARD - CA
-    if (statelocation === 84) {priceCea = 2725} //HELENA - MT
-    if (statelocation === 85) {priceCea = 2595} //HONOLULU - HI
-    if (statelocation === 86) {priceCea = 1055} //HOUSTON - TX
-    if (statelocation === 87) {priceCea = 1055} //HOUSTON EAST - TX
-    if (statelocation === 88) {priceCea = 1325} //INDIANAPOLIS - IN
-    if (statelocation === 89) {priceCea = 1425} //IONIA - MI
-    if (statelocation === 90) {priceCea = 1225} //JACKSON - MS
-    if (statelocation === 91) {priceCea = 1050} //JACKSONVILLE EAST - FL
-    if (statelocation === 92) {priceCea = 1050} //JACKSONVILLE NORTH - FL
-    if (statelocation === 93) {priceCea = 1050} //JACKSONVILLE WEST - FL
-    if (statelocation === 94) {priceCea = 1425} //KANSAS CITY - KS
-    if (statelocation === 95) {priceCea = 1775} //KINCHELOE - MI
-    if (statelocation === 96) {priceCea = 3500} //KENS TOWING HILO - HI
-    if (statelocation === 97) {priceCea = 1200} //KNOXVILLE - TN
-    if (statelocation === 98) {priceCea = 1425} //LANSING - MI
-    if (statelocation === 99) {priceCea = 1875} //LAS VEGAS - NV
-    if (statelocation === 100) {priceCea = 1875} //LAS VEGAS WEST - NV
-    if (statelocation === 101) {priceCea = 1350} //LEXINGTON WEST - KY
-    if (statelocation === 102) {priceCea = 1350} //LEXINGTON EAST - KY
-    if (statelocation === 103) {priceCea = 1475} //LINCOLN - NE
-    if (statelocation === 104) {priceCea = 1475} //LITTLE ROCK - AR
-    if (statelocation === 105) {priceCea = 1650} //LONG BEACH - CA
-    if (statelocation === 106) {priceCea = 1050} //LONG ISLAND - NY
-    if (statelocation === 107) {priceCea = 1150} //LONGVIEW - TX
-    if (statelocation === 108) {priceCea = 1660} //LOS ANGELES - CA
-    if (statelocation === 109) {priceCea = 1350} //LOUISVILLE - KY
-    if (statelocation === 110) {priceCea = 1150} //LUFKIN - TX
-    if (statelocation === 111) {priceCea = 1100} //LUMBERTON - NC
-    if (statelocation === 112) {priceCea = 1275} //LYMAN - ME
-    if (statelocation === 113) {priceCea = 1050} //MACON - GA
-    if (statelocation === 114) {priceCea = 1325} //MADISON - WI
-    if (statelocation === 115) {priceCea = 1325} //MADISON SOUTH - WI
-    if (statelocation === 116) {priceCea = 1900} //MARTINEZ - CA
-    if (statelocation === 117) {priceCea = 1225} //MCALLEN - TX
-    if (statelocation === 118) {priceCea = 1100} //MEBANE - NC
-    if (statelocation === 119) {priceCea = 1300} //MEMPHIS - TN
-    if (statelocation === 120) {priceCea = 1800} //MENTONE - CA
-    if (statelocation === 121) {priceCea = 950} //MIAMI CENTRAL - FL
-    if (statelocation === 122) {priceCea = 950} //MIAMI NORTH - FL
-    if (statelocation === 123) {priceCea = 975} //MIAMI SOUTH - FL
-    if (statelocation === 124) {priceCea = 1250} //MILWAUKEE - Stutervant sublot - WI
-    if (statelocation === 125) {priceCea = 1250} //MILWAUKEE - Waukesha sublot - WI
-    if (statelocation === 126) {priceCea = 1250} //MILWAUKEE - WI
-    if (statelocation === 127) {priceCea = 1250} //MILWAUKEE SOUTH - WI
-    if (statelocation === 128) {priceCea = 1250} //MILWAUKEE NORTH - WI
-    if (statelocation === 129) {priceCea = 1250} //MILWAUKEE- Yard 339 Milwaukee sublot - WI
-    if (statelocation === 130) {priceCea = 1475} //MINNEAPOLIS - MN
-    if (statelocation === 131) {priceCea = 1475} //MINNEAPOLIS NORTH - MN
-    if (statelocation === 132) {priceCea = 1425} //MO - COLUMBIA - MO
-    if (statelocation === 133) {priceCea = 1200} //MOBILE - AL
-    if (statelocation === 134) {priceCea = 1200} //MOBILE SOUTH - AL
-    if (statelocation === 135) {priceCea = 1100} //MOCKSVILLE  - NC
-    if (statelocation === 136) {priceCea = 1200} //MONTGOMERY - AL
-    if (statelocation === 137) {priceCea = 1250} //N.Boston-ROWLEY Sublot - MA
-    if (statelocation === 138) {priceCea = 1200} //NASHVILLE - TN
-    if (statelocation === 139) {priceCea = 1225} //NEW ORLEANS - LA
-    if (statelocation === 140) {priceCea = 1025} //NEWBURGH - NY
-    if (statelocation === 141) {priceCea = 1175} //NORTH BOSTON - MA
-    if (statelocation === 142) {priceCea = 1075} //NORTH CHARLESTON - SC
-    if (statelocation === 143) {priceCea = 2175} //NORTH SEATTLE - WA
-    if (statelocation === 144) {priceCea = 1125} //OCALA - FL
-    if (statelocation === 145) {priceCea = 2050} //OGDEN - UT
-    if (statelocation === 146) {priceCea = 1275} //OKLAHOMA CITY - OK
-    if (statelocation === 147) {priceCea = 1075} //ORLANDO - FL
-    if (statelocation === 148) {priceCea = 1075} //ORLANDO NORTH - FL
-    if (statelocation === 149) {priceCea = 1075} //ORLANDO SOUTH - FL
-    if (statelocation === 150) {priceCea = 2325} //PASCO - WA
-    if (statelocation === 151) {priceCea = 1325} //PEORIA - IL
-    if (statelocation === 152) {priceCea = 1000} //PHILADELPHIA - PA
-    if (statelocation === 153) {priceCea = 1000} //PHILADELPHIA EAST - PA
-    if (statelocation === 154) {priceCea = 1850} //PHOENIX - AR
-    if (statelocation === 155) {priceCea = 1200} //PITTSBURGH EAST - PA
-    if (statelocation === 156) {priceCea = 1250} //PITTSBURGH NORTH - PA
-    if (statelocation === 157) {priceCea = 1250} //PITTSBURGH SOUTH - PA
-    if (statelocation === 158) {priceCea = 1250} //PITTSBURGH WEST - PA
-    if (statelocation === 159) {priceCea = 2225} //PORTLAND NORTH - OR
-    if (statelocation === 160) {priceCea = 2275} //PORTLAND SOUTH - OR
-    if (statelocation === 161) {priceCea = 1050} //PUNTA GORDA - FL
-    if (statelocation === 162) {priceCea = 1100} //PUNTA GORDA SOUTH - FL
-    if (statelocation === 163) {priceCea = 1100} //RALEIGH - NC
-    if (statelocation === 164) {priceCea = 1700} //RANCHO CUCAMONGA - CA
-    if (statelocation === 165) {priceCea = 2300} //REDDING - CA
-    if (statelocation === 166) {priceCea = 2050} //RENO - NV
-    if (statelocation === 167) {priceCea = 975} //RICHMOND - VA
-    if (statelocation === 168) {priceCea = 975} //RICHMOND EAST - VA
-    if (statelocation === 169) {priceCea = 1250} //ROCHESTER - NY
-    if (statelocation === 170) {priceCea = 1900} //SACRAMENTO - CA
-    if (statelocation === 171) {priceCea = 2150} //SALT LAKE CITY - UT
-    if (statelocation === 172) {priceCea = 2050} //SALT LAKE CITY NORTH - UT
-    if (statelocation === 173) {priceCea = 1175} //SAN ANTONIO - TX
-    if (statelocation === 174) {priceCea = 1700} //SAN BERNARDINO - CA
-    if (statelocation === 175) {priceCea = 1730} //SAN DIEGO - CA
-    if (statelocation === 176) {priceCea = 1900} //SAN JOSE - CA
-    if (statelocation === 177) {priceCea = 925} //SAVANNAH - GA
-    if (statelocation === 178) {priceCea = 975} //SAVANNAH / VERTIA SUBLOT-Georgia Copart - GA
-    if (statelocation === 179) {priceCea = 1075} //SC - COLUMBIA - SC
-    if (statelocation === 180) {priceCea = 1050} //SCRANTON - PA
-    if (statelocation === 181) {priceCea = 1125} //SEAFORD - DE
-    if (statelocation === 182) {priceCea = 1190} //SHREVEPORT - LA
-    if (statelocation === 183) {priceCea = 1500} //SIKESTON - MO
-    if (statelocation === 184) {priceCea = 1900} //SOSACRAMENTO - CA
-    if (statelocation === 185) {priceCea = 950} //SOMERVILLE - NJ
-    if (statelocation === 186) {priceCea = 1175} //SOUTH BOSTON - MA
-    if (statelocation === 187) {priceCea = 1375} //Southern Illinois - IL
-    if (statelocation === 188) {priceCea = 1100} //SPARTANBURG - SC
-    if (statelocation === 189) {priceCea = 2325} //SPOKANE - WA
-    if (statelocation === 190) {priceCea = 1425} //SPRINGFIELD - MO
-    if (statelocation === 191) {priceCea = 1525} //ST. CLOUD - MN
-    if (statelocation === 192) {priceCea = 1375} //ST. LOUIS - MO
-    if (statelocation === 193) {priceCea = 1700} //SUN VALLEY - CA
-    if (statelocation === 194) {priceCea = 1125} //SYRACUSE - NY
-    if (statelocation === 195) {priceCea = 1125} //TALLAHASSEE - FL
-    if (statelocation === 196) {priceCea = 1075} //TAMPA SOUTH - FL
-    if (statelocation === 197) {priceCea = 1100} //TAMPA SOUTH - Mulberry Sublot - FL
-    if (statelocation === 198) {priceCea = 1225} //TANNER - AL
-    if (statelocation === 199) {priceCea = 1075} //TIFTON - GA
-    if (statelocation === 200) {priceCea = 3700} //TOW GUYS KAMUELA - HI
-    if (statelocation === 201) {priceCea = 950} //TRENTON - NJ
-    if (statelocation === 202) {priceCea = 1900} //TUCSON - AZ
-    if (statelocation === 203) {priceCea = 1350} //TULSA - OK
-    if (statelocation === 204) {priceCea = 1900} //VALLEJO - CA
-    if (statelocation === 205) {priceCea = 1700} //VAN NUYS - CA
-    if (statelocation === 206) {priceCea = 1200} //WACO - TX
-    if (statelocation === 207) {priceCea = 1575} //WALTON - KY
-    if (statelocation === 208) {priceCea = 1100} //WASHINGTON DC - MD
-    if (statelocation === 209) {priceCea = 1200} //WEBSTER - NH
-    if (statelocation === 210) {priceCea = 995} //WEST PALM BEACH - FL
-    if (statelocation === 211) {priceCea = 1175} //WEST WARREN - MA
-    if (statelocation === 212) {priceCea = 1205} //WHEELING - IL
-    if (statelocation === 213) {priceCea = 1275} //Windham - NY
-    if (statelocation === 214) {priceCea = 1425} //WICHITA - KS
-    if (statelocation === 215) {priceCea = 1075} //YORK HAVEN - PA
-    if (statelocation === 216) {priceCea = 1425} //WAYLAND - MI
-      priceCea = 0
+    if (statelocation === 1) {priceCea = 350 + HOUSTON}   
+    if (statelocation === 2) {priceCea = 300 + LOS_ANGELES } //ADELANTO - CA
+    if (statelocation === 3) {priceCea = 2150 + LOS_ANGELES} //ADP TOWING MAUI -HI
+    if (statelocation === 4) {priceCea = 275 + NEWARK}  //ALBANY - NY
+    if (statelocation === 5) {priceCea = 600 + HOUSTON}  //ALBUQUERQUE - PA
+    if (statelocation === 6) {priceCea = 450 + NEWARK}  //ALTOONA - PA
+    if (statelocation === 7) {priceCea = 525 + HOUSTON}  //AMARILLO - TX
+    if (statelocation === 8) {priceCea = 425 + HOUSTON}  //ANDREWS - TX
+    if (statelocation === 9) {priceCea = 400 + LOS_ANGELES}  //ANTELOPE - CA
+    if (statelocation === 10) {priceCea = 325 + CHICAGO}  //APPLETON - WI
+    if (statelocation === 11) {priceCea = 325 + SAVANNAH} //ATLANTA EAST - GA
+    if (statelocation === 12) {priceCea = 325 + SAVANNAH} //ATLANTA NORTH - GA
+    if (statelocation === 13) {priceCea = 300 + SAVANNAH} //ATLANTA SOUTH - GA
+    if (statelocation === 14) {priceCea = 300 + SAVANNAH} //ATLANTA WEST - GA
+    if (statelocation === 15) {priceCea = 275 + SAVANNAH} //Augusta - GA
+    if (statelocation === 16) {priceCea = 250 + HOUSTON} //AUSTIN - TX
+    if (statelocation === 17) {priceCea = 350 + LOS_ANGELES} //BAKERSFIELD - CA
+    if (statelocation === 18) {priceCea = 325 + NORFOLK} //BALTIMORE - MD
+    if (statelocation === 19) {priceCea = 325 + NORFOLK} //BALTIMORE EAST - MD
+    if (statelocation === 20) {priceCea = 425 + SAVANNAH} //BATON ROUGE - LA
+    if (statelocation === 21) {priceCea = 850 + SEATTLE} //BILLINGS - MT
+    if (statelocation === 22) {priceCea = 375 + SAVANNAH} //BIRMINGHAM - AL
+    if (statelocation === 23) {priceCea = 450 + SEATTLE} //BOISE - ID
+    if (statelocation === 24) {priceCea = 500 + NEWARK} //BUFFALO - NY
+    if (statelocation === 25) {priceCea = 400 + NEWARK} //CANDIA - NH
+    if (statelocation === 26) {priceCea = 300 + SAVANNAH} //CARTERSVILLE - GA
+    if (statelocation === 27) {priceCea = 350 + NEWARK} //CHAMBERSBURG - PA
+    if (statelocation === 28) {priceCea = 625 + NORFOLK} //CHARLESTON - WV
+    if (statelocation === 29) {priceCea = 180 + CHICAGO} //CHICAGO NORTH - IL
+    if (statelocation === 30) {priceCea = 180 + CHICAGO} //CHICAGO SOUTH - IL
+    if (statelocation === 31) {priceCea = 180 + CHICAGO} //CHICAGO SOUTH-Wood
+    if (statelocation === 32) {priceCea = 300 + NORFOLK} //CHINA GROVE - NC
+    if (statelocation === 33) {priceCea = 300 + CHICAGO} //CICERO - IN
+    if (statelocation === 34) {priceCea = 550 + NORFOLK} //CLEVELAND EAST - OH
+    if (statelocation === 35) {priceCea = 550 + NORFOLK} //CLEVELAND WEST - OH
+    if (statelocation === 36) {priceCea = 650 + HOUSTON} //COLORADO SPRINGS - CO
+    if (statelocation === 37) {priceCea = 550 + NORFOLK} //COLUMBUS - OH
+    if (statelocation === 38) {priceCea = 300 + NORFOLK} //CONCORD - NC
+    if (statelocation === 39) {priceCea = 275 + HOUSTON} //CORPUS CHRISTI - TX
+    if (statelocation === 40) {priceCea = 275 + SAVANNAH} //CRASHEDTOYS ATLANTA - GA
+    if (statelocation === 41) {priceCea = 275 + HOUSTON} //CRASHEDTOYS DALLAS  - TX
+    if (statelocation === 42) {priceCea = 450 + CHICAGO} //CRASHEDTOYS EAST BETHEL - MN
+    if (statelocation === 43) {priceCea = 325 + CHICAGO} //CRASHEDTOYS ELDRIDGE - IA
+    if (statelocation === 44) {priceCea = 450 + CHICAGO} //CRASHEDTOYS MINNEAPOLIS - MN
+    if (statelocation === 45) {priceCea = 450 + LOS_ANGELES} //CRASHEDTOYS SACRAMENTO - CA
+    if (statelocation === 46) {priceCea = 275 + HOUSTON} //DALLAS - TX
+    if (statelocation === 47) {priceCea = 275 + HOUSTON} //DALLAS SOUTH - TX
+    if (statelocation === 48) {priceCea = 300 + NORFOLK} //DANVILLE - VA
+    if (statelocation === 49) {priceCea = 325 + CHICAGO} //DAVENPORT - 169 Davenport sublot - IA
+    if (statelocation === 50) {priceCea = 325 + CHICAGO} //DAVENPORT - IA
+    if (statelocation === 51) {priceCea = 550 + NORFOLK} //DAYTON - OH
+    if (statelocation === 52) {priceCea = 650 + CHICAGO} //DENVER - CO
+    if (statelocation === 53) {priceCea = 650 + CHICAGO} //DENVER CENTRAL - CO
+    if (statelocation === 54) {priceCea = 650 + CHICAGO} //DENVER SOUTH - CO
+    if (statelocation === 55) {priceCea = 400 + CHICAGO} //DES MOINES - IA
+    if (statelocation === 56) {priceCea = 400 + CHICAGO} //DETROIT - MI
+    if (statelocation === 57) {priceCea = 1850 + HONOLULU} //DK TOWING KAUAI - HI
+    if (statelocation === 58) {priceCea = 375 + SAVANNAH} //DOTHAN - AL
+    if (statelocation === 59) {priceCea = 180 + CHICAGO} //DYER - IN
+    if (statelocation === 60) {priceCea = 550 + SAVANNAH} //EARLINGTON - KY
+    if (statelocation === 61) {priceCea = 425 + HOUSTON} //EL PASO - TX
+    if (statelocation === 62) {priceCea = 375 + SEATTLE} //EUGENE - OR
+    if (statelocation === 63) {priceCea = 350 + NEWARK} //EXETER  - RI
+    if (statelocation === 64) {priceCea = 275 + SAVANNAH} //FAIRBURN  - GA
+    if (statelocation === 65) {priceCea = 450 + CHICAGO} //FLINT - MI
+    if (statelocation === 66) {priceCea = 300 + CHICAGO} //FORT WAYNE - IN
+    if (statelocation === 67) {priceCea = 250 + NORFOLK} //FREDERICKSBURG  - VA
+    if (statelocation === 68) {priceCea = 375 + NEWARK} //FREETOWN - MA
+    if (statelocation === 69) {priceCea = 375 + LOS_ANGELES} //FRESNO - CA
+    if (statelocation === 70) {priceCea = 200 + MIAMI} //FT. PIERCE - FL
+    if (statelocation === 71) {priceCea = 275 + HOUSTON} //FT. WORTH - TX
+    if (statelocation === 72) {priceCea = 325 + NORFOLK} //GASTONIA - NC
+    if (statelocation === 73) {priceCea = 200 + NEWARK} //GLASSBORO EAST - NJ
+    if (statelocation === 74) {priceCea = 200 + NEWARK} //GLASSBORO WEST - NJ
+    if (statelocation === 75) {priceCea = 150 + SEATTLE} //GRAHAM - WA
+    if (statelocation === 76) {priceCea = 275 + SAVANNAH} //GREER - SС
+    if (statelocation === 77) {priceCea = 180 + CHICAGO} //HAMMOND - IN
+    if (statelocation === 78) {priceCea = 150 + NORFOLK}  //HAMPTON - VA
+    if (statelocation === 79) {priceCea = 275 + NEWARK} //HARRISBURG - PA
+    if (statelocation === 80) {priceCea = 225 + NEWARK} //HARTFORD - CT
+    if (statelocation === 81) {priceCea = 300 + CHICAGO} //HARTFORD CITY - IN
+    if (statelocation === 82) {priceCea = 250 + NEWARK} //HARTFORD SPRINGFIELD - CT
+    if (statelocation === 83) {priceCea = 400 + LOS_ANGELES} //HAYWARD - CA
+    if (statelocation === 84) {priceCea = 750 + SEATTLE} //HELENA - MT
+    if (statelocation === 85) {priceCea = 120 + HONOLULU} //HONOLULU - HI
+    if (statelocation === 86) {priceCea = 180 + HOUSTON} //HOUSTON - TX
+    if (statelocation === 87) {priceCea = 180 + HOUSTON} //HOUSTON EAST - TX
+    if (statelocation === 88) {priceCea = 300 + CHICAGO} //INDIANAPOLIS - IN
+    if (statelocation === 89) {priceCea = 400 + CHICAGO} //IONIA - MI
+    if (statelocation === 90) {priceCea = 425 + SAVANNAH} //JACKSON - MS
+    if (statelocation === 91) {priceCea = 225 + SAVANNAH} //JACKSONVILLE EAST - FL
+    if (statelocation === 92) {priceCea = 225 + SAVANNAH} //JACKSONVILLE NORTH - FL
+    if (statelocation === 93) {priceCea = 225 + SAVANNAH} //JACKSONVILLE WEST - FL
+    if (statelocation === 94) {priceCea = 625 + SAVANNAH} //KANSAS CITY - KS
+    if (statelocation === 95) {priceCea = 750 + CHICAGO} //KINCHELOE - MI
+    if (statelocation === 96) {priceCea = 2000 + LOS_ANGELES} //KENS TOWING HILO - HI
+    if (statelocation === 97) {priceCea = 400 + SAVANNAH} //KNOXVILLE - TN
+    if (statelocation === 98) {priceCea = 400 + CHICAGO} //LANSING - MI
+    if (statelocation === 99) {priceCea = 375 + LOS_ANGELES} //LAS VEGAS - NV
+    if (statelocation === 100) {priceCea = 375 + LOS_ANGELES} //LAS VEGAS WEST - NV
+    if (statelocation === 101) {priceCea = 550 + SAVANNAH} //LEXINGTON WEST - KY
+    if (statelocation === 102) {priceCea = 500 + SAVANNAH} //LEXINGTON EAST - KY
+    if (statelocation === 103) {priceCea = 450 + CHICAGO} //LINCOLN - NE
+    if (statelocation === 104) {priceCea = 450 + HOUSTON} //LITTLE ROCK - AR
+    if (statelocation === 105) {priceCea = 150 + LOS_ANGELES} //LONG BEACH - CA
+    if (statelocation === 106) {priceCea = 250 + NEWARK} //LONG ISLAND - NY
+    if (statelocation === 107) {priceCea = 275 + HOUSTON} //LONGVIEW - TX
+    if (statelocation === 108) {priceCea = 160 + LOS_ANGELES} //LOS ANGELES - CA
+    if (statelocation === 109) {priceCea = 550 + SAVANNAH} //LOUISVILLE - KY
+    if (statelocation === 110) {priceCea = 275 + HOUSTON} //LUFKIN - TX
+    if (statelocation === 111) {priceCea = 300 + NEWARK} //LUMBERTON - NC
+    if (statelocation === 112) {priceCea = 475 + NEWARK} //LYMAN - ME
+    if (statelocation === 113) {priceCea = 250 + SAVANNAH} //MACON - GA
+    if (statelocation === 114) {priceCea = 300 + CHICAGO} //MADISON - WI
+    if (statelocation === 115) {priceCea = 300 + CHICAGO} //MADISON SOUTH - WI
+    if (statelocation === 116) {priceCea = 400 + LOS_ANGELES} //MARTINEZ - CA
+    if (statelocation === 117) {priceCea = 350 + HOUSTON} //MCALLEN - TX
+    if (statelocation === 118) {priceCea = 300 + NORFOLK} //MEBANE - NC
+    if (statelocation === 119) {priceCea = 500 + SAVANNAH} //MEMPHIS - TN
+    if (statelocation === 120) {priceCea = 300 + LOS_ANGELES} //MENTONE - CA
+    if (statelocation === 121) {priceCea = 125 + MIAMI} //MIAMI CENTRAL - FL
+    if (statelocation === 122) {priceCea = 125 + MIAMI} //MIAMI NORTH - FL
+    if (statelocation === 123) {priceCea = 150 + MIAMI} //MIAMI SOUTH - FL
+    if (statelocation === 124) {priceCea = 225 + CHICAGO} //MILWAUKEE - Stutervant sublot - WI
+    if (statelocation === 125) {priceCea = 225 + CHICAGO} //MILWAUKEE - Waukesha sublot - WI
+    if (statelocation === 126) {priceCea = 225 + CHICAGO} //MILWAUKEE - WI
+    if (statelocation === 127) {priceCea = 225 + CHICAGO} //MILWAUKEE SOUTH - WI
+    if (statelocation === 128) {priceCea = 225 + CHICAGO} //MILWAUKEE NORTH - WI
+    if (statelocation === 129) {priceCea = 225 + CHICAGO} //MILWAUKEE- Yard 339 Milwaukee sublot - WI
+    if (statelocation === 130) {priceCea = 450 + CHICAGO} //MINNEAPOLIS - MN
+    if (statelocation === 131) {priceCea = 450 + CHICAGO} //MINNEAPOLIS NORTH - MN
+    if (statelocation === 132) {priceCea = 625 + SAVANNAH} //MO - COLUMBIA - MO
+    if (statelocation === 133) {priceCea = 400 + SAVANNAH} //MOBILE - AL
+    if (statelocation === 134) {priceCea = 400 + SAVANNAH} //MOBILE SOUTH - AL
+    if (statelocation === 135) {priceCea = 300 + NORFOLK} //MOCKSVILLE  - NC
+    if (statelocation === 136) {priceCea = 400 + SAVANNAH} //MONTGOMERY - AL
+    if (statelocation === 137) {priceCea = 450 + NEWARK} //N.Boston-ROWLEY Sublot - MA
+    if (statelocation === 138) {priceCea = 400 + SAVANNAH} //NASHVILLE - TN
+    if (statelocation === 139) {priceCea = 425 + SAVANNAH} //NEW ORLEANS - LA
+    if (statelocation === 140) {priceCea = 225 + NEWARK} //NEWBURGH - NY
+    if (statelocation === 141) {priceCea = 375 + NEWARK} //NORTH BOSTON - MA
+    if (statelocation === 142) {priceCea = 275 + SAVANNAH} //NORTH CHARLESTON - SC
+    if (statelocation === 143) {priceCea = 200 + SEATTLE} //NORTH SEATTLE - WA
+    if (statelocation === 144) {priceCea = 300 + MIAMI} //OCALA - FL
+    if (statelocation === 145) {priceCea = 550 + LOS_ANGELES} //OGDEN - UT
+    if (statelocation === 146) {priceCea = 400 + HOUSTON} //OKLAHOMA CITY - OK
+    if (statelocation === 147) {priceCea = 250 + MIAMI} //ORLANDO - FL
+    if (statelocation === 148) {priceCea = 250 + MIAMI} //ORLANDO NORTH - FL
+    if (statelocation === 149) {priceCea = 250 + MIAMI} //ORLANDO SOUTH - FL
+    if (statelocation === 150) {priceCea = 350 + SEATTLE} //PASCO - WA
+    if (statelocation === 151) {priceCea = 300 + CHICAGO} //PEORIA - IL
+    if (statelocation === 152) {priceCea = 200 + NEWARK} //PHILADELPHIA - PA
+    if (statelocation === 153) {priceCea = 200 + NEWARK} //PHILADELPHIA EAST - PA
+    if (statelocation === 154) {priceCea = 350 + LOS_ANGELES} //PHOENIX - AR
+    if (statelocation === 155) {priceCea = 400 + NEWARK} //PITTSBURGH EAST - PA
+    if (statelocation === 156) {priceCea = 450 + NEWARK} //PITTSBURGH NORTH - PA
+    if (statelocation === 157) {priceCea = 450 + NEWARK} //PITTSBURGH SOUTH - PA
+    if (statelocation === 158) {priceCea = 450 + NEWARK} //PITTSBURGH WEST - PA
+    if (statelocation === 159) {priceCea = 250 + SEATTLE} //PORTLAND NORTH - OR
+    if (statelocation === 160) {priceCea = 300 + SEATTLE} //PORTLAND SOUTH - OR
+    if (statelocation === 161) {priceCea = 225 + MIAMI} //PUNTA GORDA - FL
+    if (statelocation === 162) {priceCea = 275 + MIAMI} //PUNTA GORDA SOUTH - FL
+    if (statelocation === 163) {priceCea = 300 + NORFOLK} //RALEIGH - NC
+    if (statelocation === 164) {priceCea = 200 + LOS_ANGELES} //RANCHO CUCAMONGA - CA
+    if (statelocation === 165) {priceCea = 800 + LOS_ANGELES} //REDDING - CA
+    if (statelocation === 166) {priceCea = 550 + LOS_ANGELES} //RENO - NV
+    if (statelocation === 167) {priceCea = 175 + NORFOLK} //RICHMOND - VA
+    if (statelocation === 168) {priceCea = 175 + NORFOLK} //RICHMOND EAST - VA
+    if (statelocation === 169) {priceCea = 450 + NEWARK} //ROCHESTER - NY
+    if (statelocation === 170) {priceCea = 400 + LOS_ANGELES} //SACRAMENTO - CA
+    if (statelocation === 171) {priceCea = 650 + LOS_ANGELES} //SALT LAKE CITY - UT
+    if (statelocation === 172) {priceCea = 550 + LOS_ANGELES} //SALT LAKE CITY NORTH - UT
+    if (statelocation === 173) {priceCea = 300 + HOUSTON} //SAN ANTONIO - TX
+    if (statelocation === 174) {priceCea = 200 + LOS_ANGELES} //SAN BERNARDINO - CA
+    if (statelocation === 175) {priceCea = 230 + LOS_ANGELES} //SAN DIEGO - CA
+    if (statelocation === 176) {priceCea = 400 + LOS_ANGELES} //SAN JOSE - CA
+    if (statelocation === 177) {priceCea = 125 + SAVANNAH} //SAVANNAH - GA
+    if (statelocation === 178) {priceCea = 175 + SAVANNAH} //SAVANNAH / VERTIA SUBLOT-Georgia Copart - GA
+    if (statelocation === 179) {priceCea = 275 + SAVANNAH} //SC - COLUMBIA - SC
+    if (statelocation === 180) {priceCea = 250 + NEWARK} //SCRANTON - PA
+    if (statelocation === 181) {priceCea = 325 + NEWARK} //SEAFORD - DE
+    if (statelocation === 182) {priceCea = 315 + HOUSTON} //SHREVEPORT - LA
+    if (statelocation === 183) {priceCea = 475 + CHICAGO} //SIKESTON - MO
+    if (statelocation === 184) {priceCea = 400 + LOS_ANGELES} //SOSACRAMENTO - CA
+    if (statelocation === 185) {priceCea = 150 + NEWARK} //SOMERVILLE - NJ
+    if (statelocation === 186) {priceCea = 375 + NEWARK} //SOUTH BOSTON - MA
+    if (statelocation === 187) {priceCea = 575 + SAVANNAH} //Southern Illinois - IL
+    if (statelocation === 188) {priceCea = 300 + SAVANNAH} //SPARTANBURG - SC
+    if (statelocation === 189) {priceCea = 350 + SEATTLE} //SPOKANE - WA
+    if (statelocation === 190) {priceCea = 625 + SAVANNAH} //SPRINGFIELD - MO
+    if (statelocation === 191) {priceCea = 500 + CHICAGO} //ST. CLOUD - MN
+    if (statelocation === 192) {priceCea = 575 + SAVANNAH} //ST. LOUIS - MO
+    if (statelocation === 193) {priceCea = 200 + LOS_ANGELES} //SUN VALLEY - CA
+    if (statelocation === 194) {priceCea = 325 + NEWARK} //SYRACUSE - NY
+    if (statelocation === 195) {priceCea = 325 + SAVANNAH} //TALLAHASSEE - FL
+    if (statelocation === 196) {priceCea = 250 + MIAMI} //TAMPA SOUTH - FL
+    if (statelocation === 197) {priceCea = 275 + MIAMI} //TAMPA SOUTH - Mulberry Sublot - FL
+    if (statelocation === 198) {priceCea = 425 + SAVANNAH} //TANNER - AL
+    if (statelocation === 199) {priceCea = 275 + SAVANNAH} //TIFTON - GA
+    if (statelocation === 200) {priceCea = 2200 + LOS_ANGELES} //TOW GUYS KAMUELA - HI
+    if (statelocation === 201) {priceCea = 150 + NEWARK} //TRENTON - NJ
+    if (statelocation === 202) {priceCea = 400 + LOS_ANGELES} //TUCSON - AZ
+    if (statelocation === 203) {priceCea = 475 + HOUSTON} //TULSA - OK
+    if (statelocation === 204) {priceCea = 400 + LOS_ANGELES} //VALLEJO - CA
+    if (statelocation === 205) {priceCea = 200 + LOS_ANGELES} //VAN NUYS - CA
+    if (statelocation === 206) {priceCea = 325 + HOUSTON} //WACO - TX
+    if (statelocation === 207) {priceCea = 550 + CHICAGO} //WALTON - KY
+    if (statelocation === 208) {priceCea = 300 + NORFOLK} //WASHINGTON DC - MD
+    if (statelocation === 209) {priceCea = 400 + NEWARK} //WEBSTER - NH
+    if (statelocation === 210) {priceCea = 170 + MIAMI} //WEST PALM BEACH - FL
+    if (statelocation === 211) {priceCea = 375 + NEWARK} //WEST WARREN - MA
+    if (statelocation === 212) {priceCea = 180 + CHICAGO} //WHEELING - IL
+    if (statelocation === 213) {priceCea = 475 + NEWARK} //Windham - NY
+    if (statelocation === 214) {priceCea = 550 + HOUSTON} //WICHITA - KS
+    if (statelocation === 215) {priceCea = 275 + NEWARK} //YORK HAVEN - PA
+    if (statelocation === 216) {priceCea = 400 + CHICAGO} //WAYLAND - MI
+      priceCea += 1200;
     };
-    if (platform === 2 && deliverytoPort === 2){priceCea = 0};
-    // priceCea+=1000;
+
+    if (platform === 2 && deliverytoPort === 2){
+    if (statelocation1 === 0) {priceCea = 0} 
+    if (statelocation1 === 1) {priceCea = 350 + HOUSTON} //ABILENE - TX 
+    if (statelocation1 === 2) {priceCea = 160 + LOS_ANGELES} //ACE - Carson - CA
+    if (statelocation1 === 3) {priceCea = 250 + LOS_ANGELES} //ACE - Perris - CA
+    if (statelocation1 === 4) {priceCea = 275 + LOS_ANGELES}  //ACE - PERRIS 2 - CA
+    if (statelocation1 === 5) {priceCea = 550 + NORFOLK}  //AKRON-CANTON - OH
+    if (statelocation1 === 6) {priceCea = 275 + NEWARK}  //ALBANY - NY
+    if (statelocation1 === 7) {priceCea = 600 + HOUSTON}  //ALBUQUERQUE - NM
+    if (statelocation1 === 8) {priceCea = 450 + NEWARK}  //ALTOONA - PA
+    if (statelocation1 === 9) {priceCea = 525 + HOUSTON}  //AMARILLO - TX
+    if (statelocation1 === 10) {priceCea = 200 + LOS_ANGELES}  //ANAHEIM - CA
+    if (statelocation1 === 11) {priceCea = 325 + CHICAGO} // APPLETON - WI
+    if (statelocation1 === 12) {priceCea = 400 + NORFOLK} //ASHEVILLE - NC
+    if (statelocation1 === 13) {priceCea = 300 + SAVANNAH} //ATLANTA - GA
+    if (statelocation1 === 14) {priceCea = 325 + SAVANNAH} //ATLANTA EAST - GA
+    if (statelocation1 === 15) {priceCea = 300 + SAVANNAH} //ATLANTA NORTH - GA
+    if (statelocation1 === 16) {priceCea = 300 + SAVANNAH} //ATLANTA SOUTH - GA
+    if (statelocation1 === 17) {priceCea = 250 + HOUSTON} //AUSTIN - TX
+    if (statelocation1 === 18) {priceCea = 125 + NEWARK} //AVENEL NEW JERSEY - NJ
+    if (statelocation1 === 19) {priceCea = 350 + NORFOLK} //BALTIMORE - MD
+    if (statelocation1 === 20) {priceCea = 475 + SAVANNAH} //BATON ROUGE - LA
+    if (statelocation1 === 21) {priceCea = 850 + SEATTLE} //BILLINGS - MT
+    if (statelocation1 === 22) {priceCea = 375 + SAVANNAH} //BIRMINGHAM - AL
+    if (statelocation1 === 23) {priceCea = 450 + SEATTLE} //BOISE - ID
+    if (statelocation1 === 24) {priceCea = 375 + NEWARK} //BOSTON - SHIRLEY - MA
+    if (statelocation1 === 25) {priceCea = 200 + NEWARK} //BRIDGEPORT - PA
+    if (statelocation1 === 26) {priceCea = 625 + NORFOLK} //BUCKHANNON - WV
+    if (statelocation1 === 27) {priceCea = 500 + NEWARK} //BUFFALO - NY
+    if (statelocation1 === 28) {priceCea = 500 + NEWARK} //BURLINGTON - VT
+    if (statelocation1 === 29) {priceCea = 150 + NEWARK} //CENTRAL NEW JERSEY - NJ   1111
+    if (statelocation1 === 30) {priceCea = 275 + SAVANNAH} //CHARLESTON - SC
+    if (statelocation1 === 31) {priceCea = 300 + NORFOLK} //CHARLOTTE - NC
+    if (statelocation1 === 32) {priceCea = 475 + SAVANNAH} //CHATTANOOGA - TN
+    if (statelocation1 === 33) {priceCea = 180 + CHICAGO} //CHICAGO NORTH - IL
+    if (statelocation1 === 34) {priceCea = 180 + CHICAGO} //CHICAGO SOUTH - IL
+    if (statelocation1 === 35) {priceCea = 180 + CHICAGO} //CHICAGO-WEST - IL
+    if (statelocation1 === 36) {priceCea = 550 + NORFOLK} //CINCINNATI - OH
+    if (statelocation1 === 37) {priceCea = 550 + NORFOLK} //CINCINNATI SOUTH - OH
+    if (statelocation1 === 38) {priceCea = 250 + MIAMI} //CLEARWATER - FL
+    if (statelocation1 === 39) {priceCea = 550 + NORFOLK} //CLEVELAND - OH
+    if (statelocation1 === 40) {priceCea = 650 + HOUSTON} //COLORADO SPRINGS - CO
+    if (statelocation1 === 41) {priceCea = 200 + LOS_ANGELES} //COLTON - CA
+    if (statelocation1 === 42) {priceCea = 275 + SAVANNAH} //COLUMBIA - SC
+    if (statelocation1 === 43) {priceCea = 550 + NORFOLK} //COLUMBUS - OH
+    if (statelocation1 === 44) {priceCea = 300 + NORFOLK} //CONCORD - NC
+    if (statelocation1 === 45) {priceCea = 275 + HOUSTON} //CORPUS CHRISTI - TX
+    if (statelocation1 === 46) {priceCea = 250 + NORFOLK} //CULPEPER - VA
+    if (statelocation1 === 47) {priceCea = 2000 + LOS_ANGELES} //D&D TOWING INC MAUI - HI
+    if (statelocation1 === 48) {priceCea = 275 + HOUSTON} //DALLAS - TX
+    if (statelocation1 === 49) {priceCea = 275 + HOUSTON} //Dallas/Ft Worth - TX
+    if (statelocation1 === 50) {priceCea = 325 + CHICAGO} //DAVENPORT - IA
+    if (statelocation1 === 51) {priceCea = 550 + NORFOLK} //DAYTON - OH
+    if (statelocation1 === 52) {priceCea = 2000 + LOS_ANGELES} //DC TOWING HILO - HI
+    if (statelocation1 === 53) {priceCea = 650 + HOUSTON} //DENVER - CO
+    if (statelocation1 === 54) {priceCea = 650 + HOUSTON} //DENVER EAST - CO
+    if (statelocation1 === 55) {priceCea = 400 + CHICAGO} //DES MOINES - IA
+    if (statelocation1 === 56) {priceCea = 400 + CHICAGO} //DETROIT - MI
+    if (statelocation1 === 57) {priceCea = 375 + SAVANNAH} //DOTHAN - AL
+    if (statelocation1 === 58) {priceCea = 300 + NORFOLK} //DUNDALK - MD
+    if (statelocation1 === 59) {priceCea = 400 + LOS_ANGELES} //EAST BAY - CA
+    if (statelocation1 === 60) {priceCea = 424 + HOUSTON} //EL PASO - TX
+    if (statelocation1 === 61) {priceCea = 350 + NORFOLK} //Elkton - VA
+    if (statelocation1 === 62) {priceCea = 150 + NEWARK} //Englishtown - NJ
+    if (statelocation1 === 63) {priceCea = 500 + NEWARK} //ERIE - PA
+    if (statelocation1 === 64) {priceCea = 375 + SEATTLE} //EUGENE - OR
+    if (statelocation1 === 65) {priceCea = 650 + CHICAGO} //FARGO - ND      
+    if (statelocation1 === 66) {priceCea = 475 + HOUSTON} //FAYETTEVILLE - AR
+    if (statelocation1 === 67) {priceCea = 450 + CHICAGO} //FLINT - MI
+    if (statelocation1 === 68) {priceCea = 200 + LOS_ANGELES} //FONTANA - CA
+    if (statelocation1 === 69) {priceCea = 250 + MIAMI} //FORT MYERS - FL
+    if (statelocation1 === 70) {priceCea = 200 + MIAMI} //FORT PIERCE - FL
+    if (statelocation1 === 71) {priceCea = 275 + HOUSTON} //Fort Worth North - TX
+    if (statelocation1 === 72) {priceCea = 250 + NORFOLK} //Fredericksburg-South - VA
+    if (statelocation1 === 73) {priceCea = 400 + LOS_ANGELES} //FREMONT - CA
+    if (statelocation1 === 74) {priceCea = 375 + LOS_ANGELES} //FRESNO - CA
+    if (statelocation1 === 75) {priceCea = 400 + CHICAGO} //GRAND RAPIDS - MI
+    if (statelocation1 === 76) {priceCea = 300 + NORFOLK} //GREENSBORO - NC
+    if (statelocation1 === 77) {priceCea = 300 + SAVANNAH} //GREENVILLE - SС
+    if (statelocation1 === 78) {priceCea = 425 + SAVANNAH}  //GRENADA - MS
+    if (statelocation1 === 79) {priceCea = 400 + SAVANNAH} //GULF COAST - MS
+    if (statelocation1 === 80) {priceCea = 300 + LOS_ANGELES} //HIGH POINT - CA
+    if (statelocation1 === 81) {priceCea = 225 + NEWARK} //HARTFORD - CT
+    if (statelocation1 === 82) {priceCea = 225 + NEWARK} //HARTFORD-SOUTH - CT
+    if (statelocation1 === 83) {priceCea = 300 + LOS_ANGELES} //HIGH DESERT - CA
+    if (statelocation1 === 84) {priceCea = 120 + HONOLULU} //HONOLULU - HI
+    if (statelocation1 === 85) {priceCea = 180 + HOUSTON} //HOUSTON - TX
+    if (statelocation1 === 86) {priceCea = 180 + HOUSTON} //HOUSTON SOUTH - TX
+    if (statelocation1 === 87) {priceCea = 165 + HOUSTON} //HOUSTON-NORTH - TX
+    if (statelocation1 === 88) {priceCea = 450 + SAVANNAH} //HUNTSVILLE - AL
+    if (statelocation1 === 89) {priceCea = 200 + HOUSTON} //IAA CAT HOUSTON - TX
+    if (statelocation1 === 90) {priceCea = 300 + CHICAGO} //INDIANAPOLIS - IN
+    if (statelocation1 === 91) {priceCea = 600 + CHICAGO} //INDIANAPOLIS SOUTH - IN
+    if (statelocation1 === 92) {priceCea = 425 + SAVANNAH} //JACKSON - MS
+    if (statelocation1 === 93) {priceCea = 225 + SAVANNAH} //JACKSONVILLE - FL
+    if (statelocation1 === 94) {priceCea = 625 + SAVANNAH} //KANSAS CITY - KS
+    if (statelocation1 === 95) {priceCea = 625 + SAVANNAH} //Kansas City East - MO
+    if (statelocation1 === 96) {priceCea = 400 + SAVANNAH} //KNOXVILLE - TN
+    if (statelocation1 === 97) {priceCea = 400 + SAVANNAH} //LAFAYETTE - LA
+    if (statelocation1 === 98) {priceCea = 300 + NORFOLK} //LAUREL - MD
+    if (statelocation1 === 99) {priceCea = 1750 + HONOLULU} //LEES TOWING KAUAI - HI
+    if (statelocation1 === 100) {priceCea = 250 + SAVANNAH} //Lexington - SC
+    if (statelocation1 === 101) {priceCea = 300 + CHICAGO} //LINCOLN - IL
+    if (statelocation1 === 102) {priceCea = 450 + HOUSTON} //LITTLE ROCK - AR
+    if (statelocation1 === 103) {priceCea = 250 + NEWARK} //LONG ISLAND - NY
+    if (statelocation1 === 104) {priceCea = 275 + HOUSTON} //LONGVIEW - TX
+    if (statelocation1 === 105) {priceCea = 160 + LOS_ANGELES} //LOS ANGELES - CA
+    if (statelocation1 === 106) {priceCea = 150 + LOS_ANGELES} //Los Angeles South - CA
+    if (statelocation1 === 107) {priceCea = 425 + SAVANNAH} //LOUISVILLE - KY
+    if (statelocation1 === 108) {priceCea = 550 + SAVANNAH} //LOUISVILLE NORTH - KY
+    if (statelocation1 === 109) {priceCea = 450 + HOUSTON} //LUBBOCK - TX
+    if (statelocation1 === 110) {priceCea = 275 + SAVANNAH} //MACON - GA
+    if (statelocation1 === 111) {priceCea = 400 + NEWARK} //MANCHESTER - NH
+    if (statelocation1 === 112) {priceCea = 350 + HOUSTON} //MCALLEN - TX
+    if (statelocation1 === 113) {priceCea = 500 + SAVANNAH} //MEMPHIS - TN
+    if (statelocation1 === 114) {priceCea = 300 + NORFOLK} //METRO DC - MD
+    if (statelocation1 === 115) {priceCea = 125 + MIAMI} //MIAMI - FL
+    if (statelocation1 === 116) {priceCea = 150 + MIAMI} //MIAMI NORTH - FL
+    if (statelocation1 === 117) {priceCea = 225 + CHICAGO} //MILWAUKEE - WI
+    if (statelocation1 === 118) {priceCea = 450 + CHICAGO} //Minneapolis South  - MN
+    if (statelocation1 === 119) {priceCea = 450 + CHICAGO} //MINNEAPOLIS/ST. PAUL - MN
+    if (statelocation1 === 120) {priceCea = 600 + SEATTLE} //MISSOULA - MT
+    if (statelocation1 === 121) {priceCea = 400 + SAVANNAH} //NASHVILLE - TN
+    if (statelocation1 === 122) {priceCea = 250 + NEWARK} //NEW CASTLE - DE
+    if (statelocation1 === 123) {priceCea = 425 + SAVANNAH} //NEW ORLEANS - LA
+    if (statelocation1 === 124) {priceCea = 425 + SAVANNAH} //NEW ORLEANS EAST  - LA
+    if (statelocation1 === 125) {priceCea = 425 + SAVANNAH} //New Orleans and Louisiana Flood - LA
+    if (statelocation1 === 126) {priceCea = 425 + SAVANNAH} //NEW ORLEANS EAST - LA
+    if (statelocation1 === 127) {priceCea = 225 + NEWARK} //NEWBURGH - NY
+    if (statelocation1 === 128) {priceCea = 200 + LOS_ANGELES} //NORTH HOLLYWOOD - CA
+    if (statelocation1 === 129) {priceCea = 125 + NEWARK} //NORTHERN NEW JERSEY - NJ
+    if (statelocation1 === 130) {priceCea = 250 + NORFOLK} //NORTHERN VIRGINIA - VA
+    if (statelocation1 === 131) {priceCea = 400 + HOUSTON} //OKLAHOMA CITY - OK
+    if (statelocation1 === 132) {priceCea = 450 + CHICAGO} //OMAHA - NE
+    if (statelocation1 === 133) {priceCea = 250 + MIAMI} //ORLANDO - FL
+    if (statelocation1 === 134) {priceCea = 250 + MIAMI} //ORLANDO-NORTH - FL
+    if (statelocation1 === 135) {priceCea = 400 + MIAMI} //PENSACOLA - FL
+    if (statelocation1 === 136) {priceCea = 450 + HOUSTON} //PERMIAN BASIN - TX
+    if (statelocation1 === 137) {priceCea = 200 + NEWARK} //PHILADELPHIA - PA
+    if (statelocation1 === 138) {priceCea = 200 + NEWARK} //PHILADELPHIA EAST - PA
+    if (statelocation1 === 139) {priceCea = 350 + LOS_ANGELES} //PHOENIX - AR
+    if (statelocation1 === 140) {priceCea = 450 + NEWARK} //PITTSBURGH - PA
+    if (statelocation1 === 141) {priceCea = 450 + NEWARK} //PITTSBURGH NORTH - PA
+    if (statelocation1 === 142) {priceCea = 175 + NEWARK} //PORT MURRAY - NJ
+    if (statelocation1 === 143) {priceCea = 300 + CHICAGO} //PORTAGE - WI
+    if (statelocation1 === 144) {priceCea = 475 + NEWARK} //PORTLAND - GORHAM - ME
+    if (statelocation1 === 145) {priceCea = 250 + SEATTLE} //PORTLAND - OR
+    if (statelocation1 === 146) {priceCea = 250 + SEATTLE} //Portland West - OR
+    if (statelocation1 === 147) {priceCea = 350 + NEWARK} //PROVIDENCE - RI
+    if (statelocation1 === 148) {priceCea = 400 + NORFOLK} //PULASKI - VA
+    if (statelocation1 === 149) {priceCea = 300 + NORFOLK} //RALEIGH - NC
+    if (statelocation1 === 150) {priceCea = 550 + LOS_ANGELES} //RENO - NV
+    if (statelocation1 === 151) {priceCea = 200 + NORFOLK} //RICHMOND - VA
+    if (statelocation1 === 152) {priceCea = 375 + NORFOLK} //ROANOKE - VA
+    if (statelocation1 === 153) {priceCea = 450 + NEWARK} //ROCHESTER - NY
+    if (statelocation1 === 154) {priceCea = 350 + NORFOLK} //ROSEDALE - MD
+    if (statelocation1 === 155) {priceCea = 400 + LOS_ANGELES} //SACRAMENTO - CA    
+    if (statelocation1 === 156) {priceCea = 500 + LOS_ANGELES} //SALT LAKE CITY - UT
+    if (statelocation1 === 157) {priceCea = 300 + HOUSTON} //SAN ANTONIO - TX
+    if (statelocation1 === 158) {priceCea = 300 + HOUSTON} //SAN ANTONIO-SOUTH - TX
+    if (statelocation1 === 159) {priceCea = 250 + LOS_ANGELES} //SAN BERNARDINO - CA
+    if (statelocation1 === 160) {priceCea = 230 + LOS_ANGELES} //SAN DIEGO - CA
+    if (statelocation1 === 161) {priceCea = 125 + SAVANNAH} //SAVANNAH - GA
+    if (statelocation1 === 162) {priceCea = 150 + NEWARK} //Sayreville - NJ
+    if (statelocation1 === 163) {priceCea = 250 + NEWARK} //SCRANTON - PA
+    if (statelocation1 === 164) {priceCea = 175 + SEATTLE} //SEATTLE - WA
+    if (statelocation1 === 165) {priceCea = 625 + NORFOLK} //SHADY SPRING - WV
+    if (statelocation1 === 166) {priceCea = 315 + HOUSTON} //SHREVEPORT - LA
+    if (statelocation1 === 167) {priceCea = 650 + CHICAGO} //SIOUX FALLS - SD
+    if (statelocation1 === 168) {priceCea = 250 + CHICAGO} //SOUTH BEND - IN
+    if (statelocation1 === 169) {priceCea = 200 + NEWARK} //SOUTHERN NEW JERSEY - NJ
+    if (statelocation1 === 170) {priceCea = 350 + SEATTLE} //SPOKANE - WA
+    if (statelocation1 === 171) {priceCea = 625 + SAVANNAH} //SPRINGFIELD - MO
+    if (statelocation1 === 172) {priceCea = 575 + SAVANNAH} //ST. LOUIS - IL
+    if (statelocation1 === 173) {priceCea = 150 + NORFOLK} //Suffolk - VA
+    if (statelocation1 === 174) {priceCea = 325 + NEWARK} //SYRACUSE - NY
+    if (statelocation1 === 175) {priceCea = 250 + MIAMI} //TAMPA - FL
+    if (statelocation1 === 176) {priceCea = 275 + MIAMI} //Tampa North - FL
+    if (statelocation1 === 177) {priceCea = 375 + NEWARK} //TAUNTON - MA
+    if (statelocation1 === 178) {priceCea = 375 + NEWARK} //Templeton - MA
+    if (statelocation1 === 179) {priceCea = 150 + NORFOLK} //TIDEWATER - VA
+    if (statelocation1 === 180) {priceCea = 275 + SAVANNAH} //TIFTON - GA
+    if (statelocation1 === 181) {priceCea = 400 + LOS_ANGELES} //TUCSON - AZ
+    if (statelocation1 === 182) {priceCea = 475 + HOUSTON} //TULSA - OK
+    if (statelocation1 === 183) {priceCea = 2200 + LOS_ANGELES} //WEST HAWAII TOWING & REPAIR INC KONA - HI
+    if (statelocation1 === 184) {priceCea = 180 + MIAMI} //WEST PALM BEACH - FL
+    if (statelocation1 === 185) {priceCea = 550 + HOUSTON} //WICHITA - KS
+    if (statelocation1 === 186) {priceCea = 375 + NORFOLK} //WILMINGTON - NC
+    if (statelocation1 === 187) {priceCea = 425 + NEWARK} //YORK HAVEN - PA
+    if (statelocation1 === 188) {priceCea = 275 + NEWARK} //YORK SPRINGS - PA
+      priceCea += 1200;
+    };
+
      DeliverytoPort.textContent = priceCea +" $";
 
 
@@ -1071,13 +1278,6 @@ function calculationDeliverySea() {
     deliveryAmount();
     ResultTotal();
 
-
-         function calculationCashFlow() {  // 4% комиссия от банка
-          if ( Number.isNaN(priceCea) || Number.isNaN(buyerFee) || Number.isNaN(priceLot) || priceCea <= 1000) {return};
-         calculationCash = (priceCea + buyerFee + priceLot) * 0.04;
-         remittance.textContent = calculationCash + " $"
-         console.log(calculationCash);
-       }
 };
  
 
@@ -1103,7 +1303,7 @@ function deliveryToMinsk(){
       priceMinsk = 1300;
       document.getElementById("DeliveryMinsk").textContent = priceMinsk +" $";
   }else if(deliverytoPort === 2){
-    priceMinsk = 3000;
+    priceMinsk = 2700;
     document.getElementById("DeliveryMinsk").textContent = priceMinsk +" $";
   };
   deliveryAmount();
@@ -1140,6 +1340,15 @@ function Slider_range(){
      ResultTotal();
    }  
 }
+
+
+
+function calculationCashFlow() {  // 4% комиссия от банка
+    if ( Number.isNaN(priceCea) || Number.isNaN(buyerFee) || Number.isNaN(priceLot) || priceCea <= 1000) {return};
+    calculationCash = (priceCea + buyerFee + priceLot) * 0.04;
+    remittance.textContent = calculationCash + " $"
+    console.log(calculationCash);
+    };
 
 
 
@@ -1187,6 +1396,18 @@ OtherEV.addEventListener("change",PreferentialCustoms);
 
 PreparationExportdocumentsCheck.addEventListener("change",CheckDockument);
 
+
+ // FaggotService.addEventListener("change",faggot);
+
+ // function faggot(){
+ //  if (flag1 ==== false) {}
+ // }
+
+ // CondomService.addEventListener("change",condom);
+
+ // function condom(){
+ //  if (flag2 === false) {}
+ // }
 
 
 let slider = document.getElementById("myRange");
