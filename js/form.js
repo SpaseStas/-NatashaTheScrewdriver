@@ -1345,7 +1345,7 @@ function Slider_range(){
 
 function calculationCashFlow() {  // 4% комиссия от банка
     if ( Number.isNaN(priceCea) || Number.isNaN(buyerFee) || Number.isNaN(priceLot) || priceCea <= 1000) {return};
-    calculationCash = (priceCea + buyerFee + priceLot) * 0.04;
+    calculationCash = Math.round((priceCea + buyerFee + priceLot) * 0.04);
     remittance.textContent = calculationCash + " $"
     console.log(calculationCash);
     };
