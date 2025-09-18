@@ -78,7 +78,9 @@ header{
     width: 100%; /* Width of the outside container */
 }
 
-
+.pokaz1, .pokaz2 {
+  display:none;
+}
 
 
 

@@ -49,10 +49,12 @@ if (response.ok) { // если HTTP-статус в диапазоне 200-299
   // получаем тело ответа (см. про этот метод ниже)
   let json = await response.json();
   console.log(json.rates);
-    USD_EUR = json.rates[2].buyRate;
-    EUR_USD = json.rates[2].sellRate;
+    USD_EUR = json.rates[2].sellRate;
+    EUR_USD = json.rates[2].buyRate;
     BEL_USD = json.rates[5].buyRate;
+    console.log("доллар в евро");
     console.log(USD_EUR);
+    console.log("евро в доллар");
     console.log(EUR_USD);
 } else {
   alert("Ошибка HTTP: " + response.status);
@@ -88,6 +90,18 @@ let PreparationExportdocuments$ = 0; //Оформление экспортных
 let slider_USD = 0;
 let  calculationCash = 0; // 4% рассчёт комиссии банка
 
+let RecyclingFeeOut = 0; //утиль сбор значение
+let CustomsDutiesOut = 0; // таможенные сборы и офрмление значение
+let expensesOut = 0;
+let CheckFaggotOut = 0;
+let CheckCondomOut = 0;
+
+
+
+
+
+
+
 let outHtml = document.getElementById("resulTotal");
 let result = 0; //вывовд в html итоговых значений
 // let engineСapacityValue = 0; //объем двигателя для кода
@@ -108,6 +122,7 @@ let StateLocation1 = document.getElementById("Location1"); //Мониторин�
 let statelocation1 = document.getElementById("Location1").selectedIndex; // Текущаю локация
 let Dacument = document.getElementById("Dacument"); // Получаем документ
 let salvageDocument = document.getElementById("Dacument").selectedIndex; // Текущий докумет
+
 
 
 let DeliveyGeo = document.getElementById("DeliveyGeo"); //Доставка до порта клайпид/грузия
@@ -136,7 +151,7 @@ PreparationExportdocumentsCheck
 
 // ZaprosUSD_EUR();
 // ZaprosBEL_USD();
-
+//RecyclingFee
 
 
   let crosEur = EUR_USD;
@@ -245,19 +260,40 @@ function CheckDockument(){
         ResultTotal();
 };
 
+
+
+
+//услуга декларанта
 function CheckFaggot() {
+  let pokaz = document.querySelector(".pokaz1");
   if (FaggotService.checked === true) {
     FaggotService1.textContent = "200руб  —  " + Math.round( 200 / BEL_USD) + "$";
+    CheckFaggotOut = Math.round( 200 / BEL_USD);
+    pokaz.style.display = "flex";
   }
-  else FaggotService1.textContent = "0 руб";
+  else{
+     FaggotService1.textContent = "0 руб";
+     CheckFaggotOut = 0;
+     pokaz.style.display = "none";
+  }
+  ResultTotal();
 };
 
+// услуга Оценщика
 function CheckCondom() {
+  let pokaz = document.querySelector(".pokaz2");
   if (CondomService.checked === true) {
     CondomService2.textContent = "400руб  —  " + Math.round( 400 / BEL_USD) + "$";
+    CheckCondomOut = Math.round( 400 / BEL_USD);
+    pokaz.style.display = "flex";
   }
-  else CondomService2.textContent = "0 руб";
-}
+  else{
+    CondomService2.textContent = "0 руб";
+    CheckCondomOut = 0;
+    pokaz.style.display = "none";
+  };
+  ResultTotal();
+};
 
 
 
@@ -266,12 +302,16 @@ function CheckCondom() {
 //рассчёт таможенной пошлины
 function CalculationOfCustomsDuty(){
 CustomsDuties.textContent =("120 руб — " + Math.round(120 / BEL_USD) + " $");
+CustomsDutiesOut = Math.round(120 / BEL_USD);
 expenses.textContent = ("400 руб — " + Math.round(400 / BEL_USD) + " $");
+expensesOut = Math.round(400 / BEL_USD);
+
    CustomPrice = 0;
    CustomEngine = 0;
   if (typeTC === 0) {   //Если втомобиль
   if (ageAuto === 0 && priceLot != " ") {  // до 3 лет
     RecyclingFee.textContent = ("544,50 руб — " + Math.round(545 / BEL_USD) + " $");
+    RecyclingFeeOut = Math.round(545 / BEL_USD);
      let euro = priceLot * EUR_USD;  //перевод из $ в евро
      if (euro <= 8500) {
       CustomPrice = Math.round(euro * 0.54); 
@@ -308,8 +348,8 @@ expenses.textContent = ("400 руб — " + Math.round(400 / BEL_USD) + " $");
 
   if (ageAuto === 1 && engineСapacity != " ") {  // от 3 до 5 лет
 
-    BEL_USD
     RecyclingFee.textContent = ("1089 руб — " + Math.round(1089 / BEL_USD) + " $");
+    RecyclingFeeOut = Math.round(1089 / BEL_USD);
       // CustomsDutyPrice.textContent = "0";
       if (engineСapacity <= 1000) {CustomEngine = engineСapacity * 1.5};
       if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomEngine = engineСapacity * 1.7};
@@ -321,6 +361,7 @@ expenses.textContent = ("400 руб — " + Math.round(400 / BEL_USD) + " $");
   };
   if (ageAuto === 2 && engineСapacity != " ") { //старже 5 лет
     RecyclingFee.textContent = ("1089 руб — " + Math.round(1089 / BEL_USD) + " $");
+    RecyclingFeeOut = Math.round(1089 / BEL_USD);
       // CustomsDutyPrice.textContent = "0";
       if (engineСapacity <= 1000) {CustomEngine = engineСapacity * 3};
       if (engineСapacity > 1000 && engineСapacity <= 1500) {CustomEngine = engineСapacity * 3.2};
@@ -330,7 +371,7 @@ expenses.textContent = ("400 руб — " + Math.round(400 / BEL_USD) + " $");
       if (engineСapacity > 3000) {CustomEngine = engineСapacity * 5.7};
   };
     if (flag === true) {CustomEngine = CustomEngine/2};
-   CustomsDutyEngine.textContent = CustomEngine + " Eu " + Math.round(CustomEngine*USD_EUR)+"$" ;
+   CustomsDutyEngine.textContent = CustomEngine + " Eu " + Math.round(CustomEngine*EUR_USD)+"$" ;
   };
   ResultTotal();
 };
@@ -1297,20 +1338,22 @@ function calculationDeliverySea() {
 
 };
  
+let GlobalsalvageDocumentPrice = 0;
 
 //Документы на перегистрацию, цена
 function calculationDocuments() {
   let salvageDocumentPrice = 0;
 
       if (salvageDocument != 0) {
-        salvageDocumentPrice =350;
+        GlobalsalvageDocumentPrice = salvageDocumentPrice =350;
         RegistrationDocuments.textContent = salvageDocumentPrice +" $";
       } else{
-        salvageDocumentPrice = 0;
+        GlobalsalvageDocumentPrice = salvageDocumentPrice = 0;
         RegistrationDocuments.textContent = salvageDocumentPrice +" $";
       }
-
+calculationCashFlow();
   return salvageDocumentPrice;
+
 }
 
 // Доставка до Минск
@@ -1332,15 +1375,15 @@ function deliveryToMinsk(){
 
 // подсчёт всех рублей и первод в доллары
 
-function sumRub_Dol(){
+// function sumRub_Dol(){
 
-  let sum = PreparationExportdocuments$ + 545 + 120 + 400;  // экспортные доки, утиль, таможенные сборы, свх
-  return sum / BEL_USD.toFixed(2);
+//   let sum = PreparationExportdocuments$ + 545 + 120 + 400;  // экспортные доки, утиль, таможенные сборы, свх
+//   return (sum / BEL_USD).toFixed(2);
     
-}
+// }
 
 
-// сумма первых 3-х
+// сумма первых 4-х
 function deliveryAmount(){ //Сумма  Аукционные,доставка,доставка
   if (priceLot === null || priceLot === undefined || priceLot ===" ") {priceLot = 0}
   sum = buyerFee + priceCea + priceMinsk + priceLot +calculationCash;
@@ -1362,9 +1405,8 @@ function Slider_range(){
 
 function calculationCashFlow() {  // 4% комиссия от банка
     if ( Number.isNaN(priceCea) || Number.isNaN(buyerFee) || Number.isNaN(priceLot) || priceCea <= 1000) {return};
-    calculationCash = Math.round((priceCea + buyerFee + priceLot) * 0.04);
+    calculationCash = Math.round((priceCea + buyerFee + GlobalsalvageDocumentPrice + priceLot) * 0.04);
     remittance.textContent = calculationCash + " $"
-    console.log(calculationCash);
     };
 
 
@@ -1383,8 +1425,18 @@ function calculationCashFlow() {  // 4% комиссия от банка
  };
 
 function ResultTotal() {
-  resultTotal.textContent = sum + calculationDocuments() + Math.round(sumRub_Dol())  + Math.round(CustomEngine*EUR_USD) +" $";
+  resultTotal.textContent = sum + RecyclingFeeOut + expensesOut + CustomsDutiesOut + calculationDocuments()  + Math.round(CustomEngine*EUR_USD)+ CheckFaggotOut +CheckCondomOut +" $"; //+ Math.round(sumRub_Dol()) 
 }
+
+// console.log(sum);
+// console.log(RecyclingFeeOut);
+// console.log(expensesOut);
+// console.log(CustomsDutiesOut);
+// console.log(calculationDocuments());
+// console.log(Math.round(sumRub_Dol()));
+// console.log(CustomEngine*EUR_USD);
+// console.log(CheckFaggotOut);
+// console.log(CheckCondomOut);
 
 
 
